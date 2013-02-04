@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Knockout :&quot;selectedOptions&quot; 绑定</title> <link href="../css/tripoli.simple.css" type="text/css" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/smallScreen.css" media="only screen and (max-device-width: 800px)" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="../css/tripoli.simple.ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="../css/ie6ie7.css" /><![endif]-->
+        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../css/ie6.css" /><![endif]-->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/release.js"></script>
+		<!--[if lt IE 7]>
+<script defer type="text/javascript" src="../js/ie6pngfix.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css"/>  
+
+<script type="text/javascript">
+if (!window.jQuery)document.write('<script type="text/javascript" src="../js/jquery-1.7.2.min.js"><' + '/script>');
+    $(function() {
+		$('.cn').hover(function(){
+				var t = $(this);
+				t.next('.en').css('top',t.offset().top + t.height() + 10).css('left',t.offset().left).css('width',t.width()).fadeIn();
+			},function(){
+				$(this).next('.en').fadeOut();
+			});
+        // Fancy fonts
+        Cufon.replace('.titillium');
+        Cufon.replace('.engraved', {
+            textShadow: 'rgba(253, 224, 217, 0.45) 1.2px 1px'	
+        });
+        
+        // Syntax highlighting
+        $("pre > code").each(function() {
+            var codeText = $(this).text();
+            $(this).parent().text(codeText).addClass("brush:js");
+        });
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+        
+        // Highlight current top menu item
+        var desiredMenuItem = '' || 'documentation';
+        $(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+        
+        // Highlight current left-hand-nav menu item
+        var urlFilename = location.href.match(/\/([^\/]+)$/);
+        if (urlFilename) {
+            $(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])").addClass("active");
+        }
+    });
+</script> 
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="vspace"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+            <div class="vspace"></div>
+            <div>	
+	<div class="leftCol">		
+		<div class="leftColBackground">&nbsp;</div>
+		<div class="leftColContents">
+			<h1>入门</h1>
+
+<ol>
+    <li><a href="introduction.html">KO工作原理及带来的好处</a></li>
+    <li><a href="installation.html">下载安装</a></li>
+</ol>
+
+<h1>监控属性</h1>
+
+<ol>
+    <li><a href="observables.html">创建带有监控属性的 <em>view model</em></a></li>
+    <li><a href="computedObservables.html">使用<em>自动计算属性(Computed Observables)</em></a></li>
+    <li><a href="observableArrays.html">使用<em>监控数组(Observable Arrays)</em></a></li>	
+</ol>
+
+<h1>使用内置绑定</h1>
+
+<h2>控制文本和外观</h2>
+<ol>
+<li><a href="visible-binding.html"><code>visible</code> 绑定</a><a class="en" href="visible-binding.html">The <code>visible</code> binding</a></li>
+<li><a href="text-binding.html"><code>text</code> 绑定</a></li>
+<li><a href="html-binding.html"><code>html</code> 绑定</a></li>
+<li><a href="css-binding.html"><code>css</code> 绑定</a></li>
+<li><a href="style-binding.html"><code>style</code> 绑定</a></li>
+<li><a href="attr-binding.html"><code>attr</code> 绑定</a></li>
+</ol>
+
+<h2>绑定逻辑控制</h2>
+<ol>
+<li><a href="foreach-binding.html"><code>foreach</code> 绑定</a></li>
+<li><a href="if-binding.html"><code>if</code> 绑定</a></li>
+<li><a href="ifnot-binding.html"><code>ifnot</code> 绑定</a></li>
+<li><a href="with-binding.html"><code>with</code> 绑定</a></li>
+</ol>
+
+<h2>处理表单属性</h2>
+<ol>
+    <li><a href="click-binding.html"><code>click</code> 绑定</a></li>
+    <li><a href="event-binding.html"><code>event</code> 绑定</a></li>
+    <li><a href="submit-binding.html"><code>submit</code> 绑定</a></li>
+    <li><a href="enable-binding.html"><code>enable</code> 绑定</a></li>
+    <li><a href="disable-binding.html"><code>disable</code> 绑定</a></li>
+    <li><a href="value-binding.html"><code>value</code> 绑定</a></li>
+    <li><a href="hasfocus-binding.html"><code>hasfocus</code> 绑定</a></li>
+    <li><a href="checked-binding.html"><code>checked</code> 绑定</a></li>
+    <li><a href="options-binding.html"><code>options</code> 绑定</a></li>
+    <li><a href="selectedOptions-binding.html"><code>selectedOptions</code> 绑定</a></li>    
+    <li><a href="uniqueName-binding.html"><code>uniqueName</code> 绑定</a></li>		
+</ol>
+
+<h2>解析模板</h2>
+<ol>
+    <li><a href="template-binding.html"><code>template</code> 绑定</a></li>
+</ol>
+
+<h2>高级应用</h2>
+<ol>
+    <li><a href="custom-bindings.html">自定义绑定</a></li>
+    <li><a href="json-data.html">读取和保存JSON数据</a></li>
+    <li><a href="extenders.html">扩展observables监控</a></li>
+    <li><a href="throttle-extender.html">The <code>throttle</code> extender</a></li>
+    <li><a href="unobtrusive-event-handling.html">非显式事件绑定</a></li>
+    <li><a href="fn.html"><code>fn</code> 自定义函数</a></li>
+</ol>
+
+<h2>插件</h2>
+<ol>
+    <li><a href="plugins-mapping.html"><code>mapping</code> 插件</a></li>
+</ol>
+
+<h1>更多信息</h1>
+<ol>
+    <li><a href="browser-support.html">浏览支持</a></li>
+    <li><a href="http://groups.google.com/group/knockoutjs">取得帮助</a></li>
+    <li><a href="links.html">在线例子</a></li>
+</ol>
+		</div>		
+	</div>
+	<div class="rightCol">
+		<div class="documentation sticker">
+		    <div class="content">
+		    	<h1>"selectedOptions" 绑定</h1>	
+		    	<h3 id='purpose'>目的</h3>
+
+<p class="cn"><code>selectedOptions</code> 绑定用于控制multi-select列表已经被选择的元素，用在使用 <code>options</code> 绑定的 <code>&lt;select&gt;</code> 元素上。</p>
+<p class="en">The <code>selectedOptions</code> binding controls which elements in a multi-select list are currently selected. This is intended to be used in conjunction with a <code>&lt;select&gt;</code> element and the <code>options</code> binding.</p>
+
+<p class="cn">当用户在multi-select列表选择或反选一个项的时候，会将view model的数组进行相应的添加或者删除。同样，如果view model上的这个数组是<em>observable</em>数组的话，你添加或者删除任何item（通过 <code>push</code> 或者 <code>splice</code>）的时候，相应的UI界面里的option项也会被选择上或者反选。这种方式是2-way绑定。</p>
+<p class="en">When the user selects or de-selects an item in the multi-select list, this adds or removes the corresponding value to an array on your view model. Likewise, assuming it&#8217;s an <em>observable</em> array on your view model, then whenever you add or remove (e.g., via <code>push</code> or <code>splice</code>) items to this array, the corresponding items in the UI become selected or deselected. It&#8217;s a 2-way binding.</p>
+
+<p class="cn">注：控制single-select下拉菜单选择项，你可以使用 <a href='value-binding.html'><code>value</code> 绑定</a> 。</p>
+<p class="en">Note: To control which element in a single-select drop-down list is selected, you can use <a href='value-binding.html'>the <code>value</code> binding</a> instead.</p>
+
+<h3 id='example'>例子</h3>
+
+<pre><code>&lt;p&gt;
+    Choose some countries you&#39;d like to visit: 
+    &lt;select data-bind=&quot;options: availableCountries, selectedOptions: chosenCountries&quot; size=&quot;5&quot; multiple=&quot;true&quot;&gt;&lt;/select&gt;
+&lt;/p&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var viewModel = {
+        availableCountries : ko.observableArray([&#39;France&#39;, &#39;Germany&#39;, &#39;Spain&#39;]),
+        chosenCountries : ko.observableArray([&#39;Germany&#39;]) // Initially, only Germany is selected
+    };
+    
+    // ... then later ...
+    viewModel.chosenCountries.push(&#39;France&#39;); // Now France is selected too
+&lt;/script&gt;</code></pre>
+
+<h3 id='parameters'>参数</h3>
+
+<ul>
+<li>
+<p>主参数</p>
+
+<p class="cn">该参数是数组（或observable数组）。KO设置元素的已选项为和数组里match的项，之前的已选择项将被覆盖。</p>
+<p class="en">This should be an array (or an observable array). KO sets the element&#8217;s selected options to match the contents of the array. Any previous selection state will be overwritten.</p>
+
+<p class="cn"> 如果参数是依赖监控属性observable数组，那元素的已选择项selected options项将根据参数值的变化（通过 <code>push</code>，<code>pop</code> 或<a href='observableArrays.html'>或其它observable数组方法</a>）而更新，如果不是，那元素的已选择项selected options将只设置一次并且以后不在更新。</p>
+<p class="en">If your parameter is an observable array, the binding will update the element&#8217;s selection whenever the array changes (e.g., via <code>push</code>, <code>pop</code> or <a href='observableArrays.html'>other observable array methods</a>). If the parameter isn&#8217;t observable, it will only set the element&#8217;s selection state once and will not update it again later.</p>
+
+
+<p class="cn">不管该参数是不是observable数组，用户在multi-select列表里选择或者反选的时候，KO都会探测到，并且更新数组里的对象以达到同步的结果。这样你就可以获取options已选项。</p>
+<p class="en">Whether or not the parameter is an observable array, KO will detect when the user selects or deselects an item in the multi-select list, and will update the array to match. This is how you can read which of the options is selected.</p>
+</li>
+
+<li>
+<p>其它参数</p>
+
+<p>无</p>
+</li>
+</ul>
+
+<h3 id='note_letting_the_user_select_from_arbitrary_javascript_objects'>注：支持让用户选择任意JavaScript对象</h3>
+
+<p class="cn">在上面的例子里，用户可以选择数组里的字符串值，但是选择<em>不限于</em>字符串，如果你愿意你可以声明包含任意JavaScript对象的数组，查看 <a href='options-binding.html'><code>options</code></a>绑定如何显示JavaScript对象到列表里。</p>
+<p class="en">In the example code above, the user can choose from an array of string values. You&#8217;re <em>not</em> limited to providing strings - your <code>options</code> array can contain arbitrary JavaScript objects if you wish. See <a href='options-binding.html'>the <code>options</code> binding</a> for details on how to control how arbitrary objects should be displayed in the list.</p>
+
+
+<p class="cn">这种场景，你可以用 <code>selectedOptions</code> 来读取或设置这些对象本身，而<em>不是</em>页面上显示的option表示形式，这样做在大部分情况下都非常清晰。view model就可以探测到你从数组对象里选择的项了，而不必关注每个项和页面上展示的option项是如何map的。</p>
+<p class="en">In this scenario, the values you can read and write using <code>selectedOptions</code> are those objects themselves, <em>not</em> their textual representations. This leads to much cleaner and more elegant code in most cases. Your view model can imagine that the user chooses from an array of arbitrary objects, without having to care how those objects are mapped to an on-screen representation.</p>
+
+<h3 id='dependencies'>依赖性</h3>
+
+<p>除KO核心类库外，无依赖。</p>    
+		    </div>
+		    
+		    <div class="clear"></div>
+		</div>
+	</div>	
+</div>
+            <div class="clear"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+        </div>
+        
+    <div id="page-footer">(c) knockoutjs.com</div>
+
+    </body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Knockout : &quot;with&quot; 绑定</title> <link href="../css/tripoli.simple.css" type="text/css" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/smallScreen.css" media="only screen and (max-device-width: 800px)" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="../css/tripoli.simple.ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="../css/ie6ie7.css" /><![endif]-->
+        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../css/ie6.css" /><![endif]-->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/release.js"></script>
+		<!--[if lt IE 7]>
+<script defer type="text/javascript" src="../js/ie6pngfix.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css"/>  
+
+<script type="text/javascript">
+if (!window.jQuery)document.write('<script type="text/javascript" src="../js/jquery-1.7.2.min.js"><' + '/script>');
+    $(function() {
+		$('.cn').hover(function(){
+				var t = $(this);
+				t.next('.en').css('top',t.offset().top + t.height() + 10).css('left',t.offset().left).css('width',t.width()).fadeIn();
+			},function(){
+				$(this).next('.en').fadeOut();
+			});
+        // Fancy fonts
+        Cufon.replace('.titillium');
+        Cufon.replace('.engraved', {
+            textShadow: 'rgba(253, 224, 217, 0.45) 1.2px 1px'	
+        });
+        
+        // Syntax highlighting
+        $("pre > code").each(function() {
+            var codeText = $(this).text();
+            $(this).parent().text(codeText).addClass("brush:js");
+        });
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+        
+        // Highlight current top menu item
+        var desiredMenuItem = '' || 'documentation';
+        $(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+        
+        // Highlight current left-hand-nav menu item
+        var urlFilename = location.href.match(/\/([^\/]+)$/);
+        if (urlFilename) {
+            $(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])").addClass("active");
+        }
+    });
+</script> 
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="vspace"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">Home</a></li>
+        <li><a rel="installation" href="./installation.html">Download / Install</a></li>
+        <li><a rel="tutorials" href="http://learn.knockoutjs.com/">Tutorials</a></li>
+        <li><a rel="examples" href="../examples/">Live examples</a></li>
+        <li><a rel="documentation" href="./introduction.html">Documentation</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">Forum</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">Source</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+            <div class="vspace"></div>
+            <div>	
+	<div class="leftCol">		
+		<div class="leftColBackground">&nbsp;</div>
+		<div class="leftColContents">
+			<h1>入门</h1>
+
+<ol>
+    <li><a href="introduction.html">KO工作原理及带来的好处</a></li>
+    <li><a href="installation.html">下载安装</a></li>
+</ol>
+
+<h1>监控属性</h1>
+
+<ol>
+    <li><a href="observables.html">创建带有监控属性的 <em>view model</em></a></li>
+    <li><a href="computedObservables.html">使用<em>自动计算属性(Computed Observables)</em></a></li>
+    <li><a href="observableArrays.html">使用<em>监控数组(Observable Arrays)</em></a></li>	
+</ol>
+
+<h1>使用内置绑定</h1>
+
+<h2>控制文本和外观</h2>
+<ol>
+<li><a href="visible-binding.html"><code>visible</code> 绑定</a><a class="en" href="../visible-binding.html">The <code>visible</code> binding</a></li>
+<li><a href="text-binding.html"><code>text</code> 绑定</a></li>
+<li><a href="html-binding.html"><code>html</code> 绑定</a></li>
+<li><a href="css-binding.html"><code>css</code> 绑定</a></li>
+<li><a href="style-binding.html"><code>style</code> 绑定</a></li>
+<li><a href="attr-binding.html"><code>attr</code> 绑定</a></li>
+</ol>
+
+<h2>绑定逻辑控制</h2>
+<ol>
+<li><a href="foreach-binding.html"><code>foreach</code> 绑定</a></li>
+<li><a href="if-binding.html"><code>if</code> 绑定</a></li>
+<li><a href="ifnot-binding.html"><code>ifnot</code> 绑定</a></li>
+<li><a href="with-binding.html"><code>with</code> 绑定</a></li>
+</ol>
+
+<h2>处理表单属性</h2>
+<ol>
+    <li><a href="click-binding.html"><code>click</code> 绑定</a></li>
+    <li><a href="event-binding.html"><code>event</code> 绑定</a></li>
+    <li><a href="submit-binding.html"><code>submit</code> 绑定</a></li>
+    <li><a href="enable-binding.html"><code>enable</code> 绑定</a></li>
+    <li><a href="disable-binding.html"><code>disable</code> 绑定</a></li>
+    <li><a href="value-binding.html"><code>value</code> 绑定</a></li>
+    <li><a href="hasfocus-binding.html"><code>hasfocus</code> 绑定</a></li>
+    <li><a href="checked-binding.html"><code>checked</code> 绑定</a></li>
+    <li><a href="options-binding.html"><code>options</code> 绑定</a></li>
+    <li><a href="selectedOptions-binding.html"><code>selectedOptions</code> 绑定</a></li>    
+    <li><a href="uniqueName-binding.html"><code>uniqueName</code> 绑定</a></li>		
+</ol>
+
+<h2>解析模板</h2>
+<ol>
+    <li><a href="template-binding.html"><code>template</code> 绑定</a></li>
+</ol>
+
+<h2>高级应用</h2>
+<ol>
+    <li><a href="custom-bindings.html">自定义绑定</a></li>
+    <li><a href="json-data.html">读取和保存JSON数据</a></li>
+    <li><a href="extenders.html">扩展observables监控</a></li>
+    <li><a href="throttle-extender.html">The <code>throttle</code> extender</a></li>
+    <li><a href="unobtrusive-event-handling.html">非显式事件绑定</a></li>
+    <li><a href="fn.html"><code>fn</code> 自定义函数</a></li>
+</ol>
+
+<h2>插件</h2>
+<ol>
+    <li><a href="plugins-mapping.html"><code>mapping</code> 插件</a></li>
+</ol>
+
+<h1>更多信息</h1>
+<ol>
+    <li><a href="browser-support.html">浏览支持</a></li>
+    <li><a href="http://groups.google.com/group/knockoutjs">取得帮助</a></li>
+    <li><a href="links.html">在线例子</a></li>
+</ol>
+		</div>		
+	</div>
+	<div class="rightCol">
+		<div class="documentation sticker">
+		    <div class="content">
+		    	<h1>"with" 绑定</h1>	
+		    	<script src='../js/twitterApi.js' type='text/javascript'> </script>
+<h3 id='purpose'>目的</h3>
+
+<p class="cn"><code>with</code> 绑定用来创建一个新的 <a href='binding-context.html'>绑定上下文</a>，所以这样的后代元素绑定在一个指定的对象中。</p>
+<p class="en">The <code>with</code> binding creates a new <a href='binding-context.html'>binding context</a>, so that descendant elements are bound in the context of a specified object.</p>
+
+<p class="cn">当然， 你可以任意嵌套使用 <code>with</code> 绑定和其他的流程控制语句<a href='if-binding.html'><code>if</code></a> 和 <a href='foreach-binding.html'><code>foreach</code></a>。</p>
+<p class="en">Of course, you can arbitrarily nest <code>with</code> bindings along with the other control-flow bindings such as <a href='if-binding.html'><code>if</code></a> and <a href='foreach-binding.html'><code>foreach</code></a>.</p>
+
+<h3 id='example_1'>例 1</h3>
+
+<p class="cn">这是一个非常基本的例子绑定上下文到子对象。 请注意在子元素<code>latitude</code> 和 <code>longitude</code>的 <code>data-bind</code> 属性中,不需要对象关系绑定前缀<code>coords.</code>，因为绑定上下文已经被切换到<code>coords.</code>元素中。</p>
+<p class="en">Here is a very basic example of switching the binding context to a child object. Notice that in the <code>data-bind</code> attributes, it is <em>not</em> necessary to prefix <code>latitude</code> or <code>longitude</code> with <code>coords.</code>, because the binding context is switched to <code>coords</code>.</p>
+
+<pre><code>&lt;h1 data-bind=&quot;text: city&quot;&gt; &lt;/h1&gt;
+&lt;p data-bind=&quot;with: coords&quot;&gt;
+    Latitude: &lt;span data-bind=&quot;text: latitude&quot;&gt; &lt;/span&gt;,
+    Longitude: &lt;span data-bind=&quot;text: longitude&quot;&gt; &lt;/span&gt;
+&lt;/p&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    ko.applyBindings({
+        city: &quot;London&quot;,
+        coords: {
+            latitude:  51.5001524,
+            longitude: -0.1262362
+        }
+    });
+&lt;/script&gt;</code></pre>
+
+<h3 id='example_2'>例 2</h3>
+
+<p>用户交互演示:</p>
+
+<ul class="cn">
+<li><code>with</code> 绑定将动态的添加或删除子元素，取决关联的值是否为 <code>null</code>或<code>undefined</code></li>
+
+<li>如果你想从父绑定上下文中访问数据或函数，你可以使用<a href='binding-context.html'>特定的上下文属性 <code>$parent</code> 和 <code>root</code></a>。</li>
+</ul>
+<ul class="en">
+<li>The <code>with</code> binding will dynamically add or remove descendant elements depending on whether the associated value is <code>null</code>/<code>undefined</code> or not</li>
+
+<li>If you want to access data/functions from parent binding contexts, you can use <a href='binding-context.html'>special context properties such as <code>$parent</code> and <code>root</code></a>.</li>
+</ul>
+
+<p>尝试下:</p>
+<div class='liveExample'>
+
+<form data-bind='submit: getTweets'>
+    Twitter account:
+    <input data-bind='value: twitterName' />
+    <button type='submit'>Get tweets</button>
+</form>
+
+<div data-bind='with: resultData'>
+    <h3>Recent tweets fetched at <span data-bind='text: retrievalDate'> </span></h3>
+    <ol data-bind='foreach: topTweets'>
+        <li data-bind='text: text' />
+    </ol>
+
+    <button data-bind='click: $parent.clearResults'>Clear tweets</button>
+</div>
+
+<script type='text/javascript'>
+
+/*<![CDATA[*/
+function AppViewModel() {
+    var self = this;
+    self.twitterName = ko.observable('@StephenFry');
+    self.resultData = ko.observable(); // No initial value
+
+    self.getTweets = function() {
+        twitterApi.getTweetsForUser(self.twitterName(), function(data) {
+            self.resultData({
+                retrievalDate: new Date(),
+                topTweets: data.slice(0, 5)
+            });
+        });
+    }
+
+    self.clearResults = function() {
+        self.resultData(undefined);
+    }
+}
+
+ko.applyBindings(new AppViewModel());
+/*]]>*/
+
+</script>
+</div><h4>源码: View</h4><pre class='brush:html'>
+&lt;form data-bind=&quot;submit: getTweets&quot;&gt;
+    Twitter account:
+    &lt;input data-bind=&quot;value: twitterName&quot; /&gt;
+    &lt;button type=&quot;submit&quot;&gt;Get tweets&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;div data-bind=&quot;with: resultData&quot;&gt;
+    &lt;h3&gt;Recent tweets fetched at &lt;span data-bind=&quot;text: retrievalDate&quot;&gt; &lt;/span&gt;&lt;/h3&gt;
+    &lt;ol data-bind=&quot;foreach: topTweets&quot;&gt;
+        &lt;li data-bind=&quot;text: text&quot;&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+
+    &lt;button data-bind=&quot;click: $parent.clearResults&quot;&gt;Clear tweets&lt;/button&gt;
+&lt;/div&gt;
+</pre><h4>源码: View model</h4><pre class='brush:js'>
+function AppViewModel() {
+    var self = this;
+    self.twitterName = ko.observable('@StephenFry');
+    self.resultData = ko.observable(); // No initial value
+
+    self.getTweets = function() {
+        twitterApi.getTweetsForUser(self.twitterName(), function(data) {
+            self.resultData({
+                retrievalDate: new Date(),
+                topTweets: data.slice(0, 5)
+            });
+        });
+    }
+
+    self.clearResults = function() {
+        self.resultData(undefined);
+    }
+}
+
+ko.applyBindings(new AppViewModel());
+</pre>
+<h3 id='parameters'>参数</h3>
+
+<ul>
+<li>
+<p>主参数</p>
+
+<p class="cn">绑定上下文您需要使用对象。</p>
+<p class="en">The object that you want to use as the context for binding descendant elements.</p>
+
+<p class="cn">如果提供的表达式为 <code>null</code> 或 <code>undefined</code>，将<em>不</em>会绑定所包含的元素反而会从文档中删除。</p>
+<p class="en">If the expression you supply evaluates to <code>null</code> or <code>undefined</code>, descendant elements will <em>not</em> be bound at all, but will instead be removed from the document.</p>
+
+<p class="cn">如果提供的表达式包含任何 observable 值,observables 的每次更新都会重置区域绑定。旧的元素将被绑定清除，新的标记和绑定将被重新添加到上下文中。</p>
+<p class="en">If the expression you supply involves any observable values, the expression will be re-evaluated whenever any of those observables change. Then, descendant elements will be cleared out, and a new copy of the markup will be added to your document and bound in the context of the new evaluation result.</p>
+</li>
+
+<li>
+<p>附加参数</p>
+
+<ul>
+<li>无</li>
+</ul>
+</li>
+</ul>
+
+<h3 id='note_1_using_with_without_a_container_element'>注 1: 在没有容器元素的情况下使用 &#8220;with&#8221;</h3>
+
+<p class="cn">和 <a href='if-binding.html'><code>if</code></a>，<a href='foreach-binding.html'><code>foreach</code></a>绑定一样，<code>with</code> 可以在没有父级容器的情况下使用。如果要在不能引入一个新的容器元素的情况下使用 <code>with</code> 绑定这很重要。 请参考 <a href='if-binding.html'><code>if</code></a> 或 <a href='foreach-binding.html'><code>foreach</code></a> 文档来查看更多信息。</p>
+<p class="en">Just like other control flow elements such as <a href='if-binding.html'><code>if</code></a> and <a href='foreach-binding.html'><code>foreach</code></a>, you can use <code>with</code> without any container element to host it. This is useful if you need to use <code>with</code> in a place where it would not be legal to introduce a new container element just to hold the <code>with</code> binding. See the documentation for <a href='if-binding.html'><code>if</code></a> or <a href='foreach-binding.html'><code>foreach</code></a> for more details.</p>
+
+<p>例子:</p>
+
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;Header element&lt;/li&gt;
+    &lt;!-- ko with: outboundFlight --&gt;
+        ...
+    &lt;!-- /ko --&gt;
+    &lt;!-- ko with: inboundFlight --&gt;
+        ...
+    &lt;!-- /ko --&gt;
+&lt;/ul&gt;</code></pre>
+
+<p class="cn"><code>&lt;!-- ko --&gt;</code> 和 <code>&lt;!-- /ko --&gt;</code> 注释作为开始/结束的标记，定义一个 &#8220;虚拟元素&#8221; 作为容器包裹在内。Knockout 将会应用此方法的绑定。</p>
+<p class="en">The <code>&lt;!-- ko --&gt;</code> and <code>&lt;!-- /ko --&gt;</code> comments act as start/end markers, defining a &#8220;virtual element&#8221; that contains the markup inside. Knockout understands this virtual element syntax and binds as if you had a real container element.</p>
+
+<h3 id='dependencies'>依赖性</h3>
+
+<p>除KO核心类库外，无依赖。</p>
+		    </div>
+		    
+		    <div class="clear"></div>
+		</div>
+	</div>	
+</div>
+            <div class="clear"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">Home</a></li>
+        <li><a rel="installation" href="./installation.html">Download / Install</a></li>
+        <li><a rel="tutorials" href="http://learn.knockoutjs.com/">Tutorials</a></li>
+        <li><a rel="examples" href="../examples/">Live examples</a></li>
+        <li><a rel="documentation" href="./introduction.html">Documentation</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">Forum</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">Source</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+        </div>
+        
+    <div id="page-footer">(c) knockoutjs.com</div>
+
+    </body>
+</html>

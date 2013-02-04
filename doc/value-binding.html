@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Knockout :"value" 绑定</title> <link href="../css/tripoli.simple.css" type="text/css" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/smallScreen.css" media="only screen and (max-device-width: 800px)" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="../css/tripoli.simple.ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="../css/ie6ie7.css" /><![endif]-->
+        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../css/ie6.css" /><![endif]-->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/release.js"></script>
+		<!--[if lt IE 7]>
+<script defer type="text/javascript" src="../js/ie6pngfix.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css"/>  
+
+<script type="text/javascript">
+if (!window.jQuery)document.write('<script type="text/javascript" src="../js/jquery-1.7.2.min.js"><' + '/script>');
+    $(function() {
+		$('.cn').hover(function(){
+				var t = $(this);
+				t.next('.en').css('top',t.offset().top + t.height() + 10).css('left',t.offset().left).css('width',t.width()).fadeIn();
+			},function(){
+				$(this).next('.en').fadeOut();
+			});
+        // Fancy fonts
+        Cufon.replace('.titillium');
+        Cufon.replace('.engraved', {
+            textShadow: 'rgba(253, 224, 217, 0.45) 1.2px 1px'	
+        });
+        
+        // Syntax highlighting
+        $("pre > code").each(function() {
+            var codeText = $(this).text();
+            $(this).parent().text(codeText).addClass("brush:js");
+        });
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+        
+        // Highlight current top menu item
+        var desiredMenuItem = '' || 'documentation';
+        $(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+        
+        // Highlight current left-hand-nav menu item
+        var urlFilename = location.href.match(/\/([^\/]+)$/);
+        if (urlFilename) {
+            $(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])").addClass("active");
+        }
+    });
+</script> 
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="vspace"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+            <div class="vspace"></div>
+            <div>	
+	<div class="leftCol">		
+		<div class="leftColBackground">&nbsp;</div>
+		<div class="leftColContents">
+			<h1>入门</h1>
+
+<ol>
+    <li><a href="introduction.html">KO工作原理及带来的好处</a></li>
+    <li><a href="installation.html">下载安装</a></li>
+</ol>
+
+<h1>监控属性</h1>
+
+<ol>
+    <li><a href="observables.html">创建带有监控属性的 <em>view model</em></a></li>
+    <li><a href="computedObservables.html">使用<em>自动计算属性(Computed Observables)</em></a></li>
+    <li><a href="observableArrays.html">使用<em>监控数组(Observable Arrays)</em></a></li>	
+</ol>
+
+<h1>使用内置绑定</h1>
+
+<h2>控制文本和外观</h2>
+<ol>
+<li><a href="visible-binding.html"><code>visible</code> 绑定</a><a class="en" href="visible-binding.html">The <code>visible</code> binding</a></li>
+<li><a href="text-binding.html"><code>text</code> 绑定</a></li>
+<li><a href="html-binding.html"><code>html</code> 绑定</a></li>
+<li><a href="css-binding.html"><code>css</code> 绑定</a></li>
+<li><a href="style-binding.html"><code>style</code> 绑定</a></li>
+<li><a href="attr-binding.html"><code>attr</code> 绑定</a></li>
+</ol>
+
+<h2>绑定逻辑控制</h2>
+<ol>
+<li><a href="foreach-binding.html"><code>foreach</code> 绑定</a></li>
+<li><a href="if-binding.html"><code>if</code> 绑定</a></li>
+<li><a href="ifnot-binding.html"><code>ifnot</code> 绑定</a></li>
+<li><a href="with-binding.html"><code>with</code> 绑定</a></li>
+</ol>
+
+<h2>处理表单属性</h2>
+<ol>
+    <li><a href="click-binding.html"><code>click</code> 绑定</a></li>
+    <li><a href="event-binding.html"><code>event</code> 绑定</a></li>
+    <li><a href="submit-binding.html"><code>submit</code> 绑定</a></li>
+    <li><a href="enable-binding.html"><code>enable</code> 绑定</a></li>
+    <li><a href="disable-binding.html"><code>disable</code> 绑定</a></li>
+    <li><a href="value-binding.html"><code>value</code> 绑定</a></li>
+    <li><a href="hasfocus-binding.html"><code>hasfocus</code> 绑定</a></li>
+    <li><a href="checked-binding.html"><code>checked</code> 绑定</a></li>
+    <li><a href="options-binding.html"><code>options</code> 绑定</a></li>
+    <li><a href="selectedOptions-binding.html"><code>selectedOptions</code> 绑定</a></li>    
+    <li><a href="uniqueName-binding.html"><code>uniqueName</code> 绑定</a></li>		
+</ol>
+
+<h2>解析模板</h2>
+<ol>
+    <li><a href="template-binding.html"><code>template</code> 绑定</a></li>
+</ol>
+
+<h2>高级应用</h2>
+<ol>
+    <li><a href="custom-bindings.html">自定义绑定</a></li>
+    <li><a href="json-data.html">读取和保存JSON数据</a></li>
+    <li><a href="extenders.html">扩展observables监控</a></li>
+    <li><a href="throttle-extender.html">The <code>throttle</code> extender</a></li>
+    <li><a href="unobtrusive-event-handling.html">非显式事件绑定</a></li>
+    <li><a href="fn.html"><code>fn</code> 自定义函数</a></li>
+</ol>
+
+<h2>插件</h2>
+<ol>
+    <li><a href="plugins-mapping.html"><code>mapping</code> 插件</a></li>
+</ol>
+
+<h1>更多信息</h1>
+<ol>
+    <li><a href="browser-support.html">浏览支持</a></li>
+    <li><a href="http://groups.google.com/group/knockoutjs">取得帮助</a></li>
+    <li><a href="links.html">在线例子</a></li>
+</ol>
+		</div>		
+	</div>
+	<div class="rightCol">
+		<div class="documentation sticker">
+		    <div class="content">
+		    	<h1>"value" 绑定</h1>	
+		    	<h3 id='purpose'>目的</h3>
+
+<p class="cn"><code>value</code> 绑定是关联DOM元素的值到view model的属性上。主要是用在表单控件 <code>&lt;input&gt;</code>， <code>&lt;select&gt;</code> 和 <code>&lt;textarea&gt;</code>上。</p>
+<p class="en">The <code>value</code> binding links the associated DOM element&#8217;s value with a property on your view model. This is typically useful with form elements such as <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code> and <code>&lt;textarea&gt;</code>.</p>
+
+
+<p class="cn">当用户编辑表单控件的时候， view model对应的属性值会自动更新。同样，当你更新view model属性的时候，相对应的元素值在页面上也会自动更新。</p>
+<p class="en">When the user edits the value in the associated form control, it updates the value on your view model. Likewise, when you update the value in your view model, this updates the value of the form control on screen.</p>
+
+<p class="cn">注：如果你在checkbox或者radio button上使用 <a href='checked-binding.html'><code>checked</code> 绑定</a> 绑定来读取或者写入元素的 checked状态，而不是 <code>value</code> 值的绑定。</p>
+<p class="en">Note: If you&#8217;re working with checkboxes or radio buttons, use <a href='checked-binding.html'>the <code>checked</code> binding</a> to read and write your element&#8217;s checked state, not the <code>value</code> binding.</p>
+
+<h3 id='example'>例子</h3>
+
+<pre><code>&lt;p&gt;Login name: &lt;input data-bind=&quot;value: userName&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Password: &lt;input type=&quot;password&quot; data-bind=&quot;value: userPassword&quot; /&gt;&lt;/p&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var viewModel = {
+		userName: ko.observable(&quot;&quot;),        // Initially blank
+		userPassword: ko.observable(&quot;abc&quot;), // Prepopulate
+    };
+&lt;/script&gt;</code></pre>
+
+<h3 id='parameters'>参数</h3>
+
+<ul>
+<li>
+<p>主参数</p>
+
+<p class="cn">KO设置此参数为元素的 <code>value</code> 值。之前的值将被覆盖。</p>
+<p class="en">KO sets the element&#8217;s <code>value</code> property to your parameter value. Any previous value will be overwritten.</p>
+
+<p class="cn">如果参数是监控属性observable的，那元素的value值将根据参数值的变化而更新，如果不是，那元素的value值将只设置一次并且以后不在更新。</p>
+<p class="en">If this parameter is an observable value, the binding will update the element&#8217;s value whenever the value changes. If the parameter isn&#8217;t observable, it will only set the element&#8217;s value once and will not update it again later.</p>
+
+<p class="cn"> 如果你提供的参数不是一个数字或者字符串（而是对象或者数组）的话，那显示的value值就是 <code>yourParameter.toString()</code>  的内容（通常没用，所以最好都设置为数字或者字符串）。</p>
+<p class="en">If you supply something other than a number or a string (e.g., you pass an object or an array), the displayed text will be equivalent to <code>yourParameter.toString()</code> (that&#8217;s usually not very useful, so it&#8217;s best to supply string or numeric values).</p>
+
+<p class="cn">不管什么时候，只要你更新了元素的值，那 KO都会将view model对应的属性值自动更新。默认情况下当用户离开焦点（例如 <code>change</code> 事件）的时候，KO才更新这个值，但是你可以通过第2个参数 <code>valueUpdate</code> 来特别指定改变值的时机。</p>
+<p class="en">Whenever the user edits the value in the associated form control, KO will update the property on your view model. By default, KO updates your view model when the user transfers focus to another DOM node (i.e., on the <code>change</code> event), but you can control when the value is updated using the <code>valueUpdate</code> parameter described below.</p>
+</li>
+
+<li>
+<p>其他参数</p>
+
+<ul>
+<li>
+<p><code>valueUpdate</code></p>
+
+<p class="cn">如果你使用 <code>valueUpdate</code> 参数，那就是意味着KO将使用自定义的事件而不是默认的离开焦点事件。下面是一些最常用的选项：</p>
+<p class="en">If your binding also includes a parameter called <code>valueUpdate</code>, this defines which browser event KO should use to detect changes. The following string values are the most commonly useful choices:</p>
+
+<ul>
+<li class="cn"><code>&quot;change&quot;</code> (默认) - 当失去焦点的时候更新view model的值，或者是 <code>&lt;select&gt;</code> 元素被选择的时候。</li>
+<li class="en"><code>&quot;change&quot;</code> (default) - updates your view model when the user moves the focus to a different control, or in the case of <code>&lt;select&gt;</code> elements, immediately after any change</li>
+
+<li class="cn"><code>&quot;keyup&quot;</code> - 当用户敲完一个字符以后立即更新view model。</li>
+<li class="en"><code>&quot;keyup&quot;</code> - updates your view model when the user releases a key</li>
+
+<li class="cn"><code>&quot;keypress&quot;</code> - 当用户正在敲一个字符但没有释放键盘的时候就立即更新view model。不像 <code>keyup</code> ，这个更新和keydown是一样的。</li>
+<li class="en"><code>&quot;keypress&quot;</code> - updates your view model when the user has typed a key. Unlike <code>keyup</code>, this updates repeatedly while the user holds a key down</li>
+
+<li class="cn"><code>&quot;afterkeydown&quot;</code> - 当用户开始输入字符的时候就更新view model。主要是捕获浏览器的 <code>keydown</code> 事件或异步函数事件。</li>
+<li class="en"><code>&quot;afterkeydown&quot;</code> - updates your view model as soon as the user begins typing a character. This works by catching the browser&#8217;s <code>keydown</code> event and handling the event asynchronously.</li>
+</ul>
+
+<p class="cn">上述这些选项，如果你想让你的view model进行实时更新，使用 <code>&quot;afterkeydown&quot;</code> 是最好的选择。</p>
+<p class="en">Of these options, <code>&quot;afterkeydown&quot;</code> is the best choice if you want to keep your view model updated in real-time.</p>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>例子`:</p>
+
+<pre><code>&lt;p&gt;Your value: &lt;input data-bind=&quot;value: someValue, valueUpdate: &#39;afterkeydown&#39;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;You have typed: &lt;span data-bind=&quot;text: someValue&quot;&gt;&lt;/span&gt;&lt;/p&gt; &lt;!-- updates in real-time --&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var viewModel = {
+		someValue: ko.observable(&quot;edit me&quot;)
+    };
+&lt;/script&gt;   </code></pre>
+
+<h3 id='note_1_working_with_dropdown_lists_ie_select_nodes'>绑定下拉菜单drop-down list（例如SELECT）</h3>
+
+<p class="cn">Knockout对下拉菜单drop-down list （例如SELECT）绑定有一个特殊的支持，那就是在读取和写入绑定的时候，这个值可以是任意JavaScript对象，而不必非得是字符串。在你让你用户选择一组model对象的时候非常有用。具体例子，参考 <a href='options-binding.html'><code>options</code> 绑定</a>。</p>
+<p class="en">Knockout has special support for drop-down lists (i.e., <code>&lt;select&gt;</code> nodes). The <code>value</code> binding works in conjunction with the <code>options</code> binding to let you read and write values that are arbitrary JavaScript objects, not just string values. This is very useful if you want to let the user select from a set of model objects. For examples of this, see <a href='options-binding.html'>the <code>options</code> binding</a></p>
+
+<p class="cn">类似，如果你想创建一个multi-select list，参考 <a href='selectedOptions-binding.html'><code>selectedOptions</code> 绑定</a>。</p>
+<p class="en">Similarly, if you want to create a multi-select list, see the documentation for <a href='selectedOptions-binding.html'>the <code>selectedOptions</code> binding</a>.</p>
+
+<h3 id='note_2_updating_observable_and_nonobservable_property_values'>注2：更新observable和non-observable属性值</h3>
+
+<p class="cn">如果你用 <code>value</code> 绑定将你的表单元素和你的observable属性关联起来，KO设置的2-way的双向绑定，任何一方改变都会更新另外一方的值。</p>
+<p class="en">If you use <code>value</code> to link a form element to an observable property, KO is able to set up a 2-way binding so that changes to either affect the other.</p>
+
+<p class="cn">如果你用 <code>value</code> 绑定将你的表单元素和你的<em>non</em>-observable属性（例如是一个原始的字符串或者JavaScript表达式） ,KO会这样执行：</p>
+<p class="en">However, if you use <code>value</code> to link a form element to a <em>non</em>-observable property (e.g., a plain old string, or an arbitrary JavaScript expression), KO will do the following:</p>
+
+<p class="cn">* 如果你绑定的non-observable属性是<em>简单对象</em>，例如一个常见的属性值，KO会设置这个值为form表单元素的初始值，如果你改变form表单元素的值，KO会将值重新写回到view mode的这个属性。但当这个属性自己改变的时候，元素却不会再变化了（因为不是observable的），所以它仅仅是1-way绑定。</p>
+<p class="en">* If you reference a <em>simple property</em>, i.e., it is just a regular property on your view model, KO will set the form element&#8217;s initial state to the property value, and when the form element is edited, KO will write the changes back to your property. It cannot detect when the property changes (because it isn&#8217;t observable), so this is only a 1-way binding.</p>
+
+<p class="cn">* 如果你绑定的non-observable属性<em>不</em>是简单对象，例如复杂的JavaScript 表达式或者子属性，KO也会设置这个值为form表单元素的初始值，但是改变form表单元素的值的时候，KO不会再写会view model属性，这种情况叫one-time-only value setter，不是真正的绑定。</p>
+<p class="en">* If you reference something that is <em>not</em> a simple property, e.g., a complex JavaScript expression or a sub-property, KO will set the form element&#8217;s initial state to that value, but it will not be able to write any changes back when the user edits the form element. In this case it&#8217;s a one-time-only value setter, not a real binding.</p>
+
+<p>例子:</p>
+
+<pre><code>&lt;p&gt;First value: &lt;input data-bind=&quot;value: firstValue&quot; /&gt;&lt;/p&gt;          &lt;!-- two-way binding --&gt;
+&lt;p&gt;Second value: &lt;input data-bind=&quot;value: secondValue&quot; /&gt;&lt;/p&gt;        &lt;!-- one-way binding --&gt;
+&lt;p&gt;Third value: &lt;input data-bind=&quot;value: secondValue.length&quot; /&gt;&lt;/p&gt;  &lt;!-- no binding --&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var viewModel = {
+		firstValue: ko.observable(&quot;hello&quot;), // Observable
+		secondValue: &quot;hello, again&quot;         // Not observable
+    };
+&lt;/script&gt;</code></pre>
+
+<h3 id='dependencies'>依赖性</h3>
+
+<p>除KO核心类库外，无依赖。</p>    
+		    </div>
+		    
+		    <div class="clear"></div>
+		</div>
+	</div>	
+</div>
+            <div class="clear"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+        </div>
+        
+    <div id="page-footer">(c) knockoutjs.com</div>
+
+    </body>
+</html>

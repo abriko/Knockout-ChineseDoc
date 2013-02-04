@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Knockout : &quot;enable&quot; 绑定</title> <link href="../css/tripoli.simple.css" type="text/css" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/smallScreen.css" media="only screen and (max-device-width: 800px)" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="../css/tripoli.simple.ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="../css/ie6ie7.css" /><![endif]-->
+        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../css/ie6.css" /><![endif]-->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/release.js"></script>
+		<!--[if lt IE 7]>
+<script defer type="text/javascript" src="../js/ie6pngfix.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css"/>  
+
+<script type="text/javascript">
+if (!window.jQuery)document.write('<script type="text/javascript" src="../js/jquery-1.7.2.min.js"><' + '/script>');
+    $(function() {
+		$('.cn').hover(function(){
+				var t = $(this);
+				t.next('.en').css('top',t.offset().top + t.height() + 10).css('left',t.offset().left).css('width',t.width()).fadeIn();
+			},function(){
+				$(this).next('.en').fadeOut();
+			});
+        // Fancy fonts
+        Cufon.replace('.titillium');
+        Cufon.replace('.engraved', {
+            textShadow: 'rgba(253, 224, 217, 0.45) 1.2px 1px'	
+        });
+        
+        // Syntax highlighting
+        $("pre > code").each(function() {
+            var codeText = $(this).text();
+            $(this).parent().text(codeText).addClass("brush:js");
+        });
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+        
+        // Highlight current top menu item
+        var desiredMenuItem = '' || 'documentation';
+        $(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+        
+        // Highlight current left-hand-nav menu item
+        var urlFilename = location.href.match(/\/([^\/]+)$/);
+        if (urlFilename) {
+            $(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])").addClass("active");
+        }
+    });
+</script> 
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="vspace"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">Home</a></li>
+        <li><a rel="installation" href="./installation.html">Download / Install</a></li>
+        <li><a rel="tutorials" href="http://learn.knockoutjs.com/">Tutorials</a></li>
+        <li><a rel="examples" href="../examples/">Live examples</a></li>
+        <li><a rel="documentation" href="./introduction.html">Documentation</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">Forum</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">Source</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+            <div class="vspace"></div>
+            <div>	
+	<div class="leftCol">		
+		<div class="leftColBackground">&nbsp;</div>
+		<div class="leftColContents">
+			<h1>入门</h1>
+
+<ol>
+    <li><a href="introduction.html">KO工作原理及带来的好处</a></li>
+    <li><a href="installation.html">下载安装</a></li>
+</ol>
+
+<h1>监控属性</h1>
+
+<ol>
+    <li><a href="observables.html">创建带有监控属性的 <em>view model</em></a></li>
+    <li><a href="computedObservables.html">使用<em>自动计算属性(Computed Observables)</em></a></li>
+    <li><a href="observableArrays.html">使用<em>监控数组(Observable Arrays)</em></a></li>	
+</ol>
+
+<h1>使用内置绑定</h1>
+
+<h2>控制文本和外观</h2>
+<ol>
+<li><a href="visible-binding.html"><code>visible</code> 绑定</a><a class="en" href="../visible-binding.html">The <code>visible</code> binding</a></li>
+<li><a href="text-binding.html"><code>text</code> 绑定</a></li>
+<li><a href="html-binding.html"><code>html</code> 绑定</a></li>
+<li><a href="css-binding.html"><code>css</code> 绑定</a></li>
+<li><a href="style-binding.html"><code>style</code> 绑定</a></li>
+<li><a href="attr-binding.html"><code>attr</code> 绑定</a></li>
+</ol>
+
+<h2>绑定逻辑控制</h2>
+<ol>
+<li><a href="foreach-binding.html"><code>foreach</code> 绑定</a></li>
+<li><a href="if-binding.html"><code>if</code> 绑定</a></li>
+<li><a href="ifnot-binding.html"><code>ifnot</code> 绑定</a></li>
+<li><a href="with-binding.html"><code>with</code> 绑定</a></li>
+</ol>
+
+<h2>处理表单属性</h2>
+<ol>
+    <li><a href="click-binding.html"><code>click</code> 绑定</a></li>
+    <li><a href="event-binding.html"><code>event</code> 绑定</a></li>
+    <li><a href="submit-binding.html"><code>submit</code> 绑定</a></li>
+    <li><a href="enable-binding.html"><code>enable</code> 绑定</a></li>
+    <li><a href="disable-binding.html"><code>disable</code> 绑定</a></li>
+    <li><a href="value-binding.html"><code>value</code> 绑定</a></li>
+    <li><a href="hasfocus-binding.html"><code>hasfocus</code> 绑定</a></li>
+    <li><a href="checked-binding.html"><code>checked</code> 绑定</a></li>
+    <li><a href="options-binding.html"><code>options</code> 绑定</a></li>
+    <li><a href="selectedOptions-binding.html"><code>selectedOptions</code> 绑定</a></li>    
+    <li><a href="uniqueName-binding.html"><code>uniqueName</code> 绑定</a></li>		
+</ol>
+
+<h2>解析模板</h2>
+<ol>
+    <li><a href="template-binding.html"><code>template</code> 绑定</a></li>
+</ol>
+
+<h2>高级应用</h2>
+<ol>
+    <li><a href="custom-bindings.html">自定义绑定</a></li>
+    <li><a href="json-data.html">读取和保存JSON数据</a></li>
+    <li><a href="extenders.html">扩展observables监控</a></li>
+    <li><a href="throttle-extender.html">The <code>throttle</code> extender</a></li>
+    <li><a href="unobtrusive-event-handling.html">非显式事件绑定</a></li>
+    <li><a href="fn.html"><code>fn</code> 自定义函数</a></li>
+</ol>
+
+<h2>插件</h2>
+<ol>
+    <li><a href="plugins-mapping.html"><code>mapping</code> 插件</a></li>
+</ol>
+
+<h1>更多信息</h1>
+<ol>
+    <li><a href="browser-support.html">浏览支持</a></li>
+    <li><a href="http://groups.google.com/group/knockoutjs">取得帮助</a></li>
+    <li><a href="links.html">在线例子</a></li>
+</ol>
+		</div>		
+	</div>
+	<div class="rightCol">
+		<div class="documentation sticker">
+		    <div class="content">
+		    	<h1>"enable" 绑定</h1>	
+		    	<h3 id='purpose'>目的</h3>
+
+<p class="cn"><code>enable</code> 绑定使DOM元素只有在参数值为 <code>true</code>的时候才启用。在form表单元素 <code>input</code>， <code>select</code>， 和 <code>textarea</code> 上非常有用。</p>
+<p class="en">The <code>enable</code> binding causes the associated DOM element to be enabled only when the parameter value is <code>true</code>. This is useful with form elements like <code>input</code>, <code>select</code>, and <code>textarea</code>.</p>
+
+<h3 id='example'>例子</h3>
+
+<pre><code>&lt;p&gt;
+    &lt;input type=&#39;checkbox&#39; data-bind=&quot;checked: hasCellphone&quot; /&gt;
+    I have a cellphone
+&lt;/p&gt;
+&lt;p&gt;
+    Your cellphone number:
+    &lt;input type=&#39;text&#39; data-bind=&quot;value: cellphoneNumber, enable: hasCellphone&quot; /&gt;
+&lt;/p&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var viewModel = {
+        hasCellphone : ko.observable(false),
+        cellphoneNumber: &quot;&quot;
+    };
+&lt;/script&gt;</code></pre>
+
+<p class="cn">这个例子里，“Your cellphone number”后的text box 初始情况下是禁用的，只有当用户点击标签 “I have a cellphone”的时候才可用。</p>
+<p class="en">In this example, the &#8220;Your cellphone number&#8221; text box will initially be disabled. It will be enabled only when the user checks the box labelled &#8220;I have a cellphone&#8221;.</p>
+
+<h3 id='parameters'>参数</h3>
+
+<ul>
+<li>
+<p>主参数</p>
+
+<p class="cn">声明DOM元素是否可用enabled。</p>
+<p class="en">A value that controls whether or not the associated DOM element should be enabled.</p>
+
+<p class="cn">非布尔值会被解析成布尔值。例如 <code>0</code> 和 <code>null</code> 会被解析成 <code>false</code>，而 <code>21</code> 和非 <code>null</code> 对象会被解析给 <code>true</code>。</p>
+<p class="en">Non-boolean values are interpreted loosely as boolean. For example, <code>0</code> and <code>null</code> are treated as <code>false</code>, whereas <code>21</code> and non-<code>null</code> objects are treated as <code>true</code>.</p>
+
+<p class="cn">如果你的参数是observable的，那绑定会随着observable值的改变而自动更新enabled/disabled状态。如果不是，则只会设置一次并且以后不再更新。</p>
+<p class="en">If your parameter references an observable value, the binding will update the enabled/disabled state whenever the observable value changes. If the parameter doesn&#8217;t reference an observable value, it will only set the state once and will not do so again later.</p>
+</li>
+
+<li>
+<p>其它参数</p>
+
+<ul>
+<li>无</li>
+</ul>
+</li>
+</ul>
+
+<h3 id='note_using_arbitrary_javascript_expressions'>注：任意使用JavaScript表达式</h3>
+
+<p class="cn">不紧紧限制于变量 – 你可以使用任何JavaScript表达式来控制元素是否可用。例如,</p>
+<p class="en">You&#8217;re not limited to referencing variables - you can reference arbitrary expressions to control an element&#8217;s enabledness. For example,</p>
+
+<pre><code>&lt;button data-bind=&quot;enable: parseAreaCode(viewModel.cellphoneNumber()) != &#39;555&#39;&quot;&gt;
+    Do something
+&lt;/button&gt;</code></pre>
+
+<h3 id='dependencies'>依赖性</h3>
+
+<p>除KO核心类库外，无依赖。</p>    
+		    </div>
+		    
+		    <div class="clear"></div>
+		</div>
+	</div>	
+</div>
+            <div class="clear"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">Home</a></li>
+        <li><a rel="installation" href="./installation.html">Download / Install</a></li>
+        <li><a rel="tutorials" href="http://learn.knockoutjs.com/">Tutorials</a></li>
+        <li><a rel="examples" href="../examples/">Live examples</a></li>
+        <li><a rel="documentation" href="./introduction.html">Documentation</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">Forum</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">Source</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+        </div>
+        
+    <div id="page-footer">(c) knockoutjs.com</div>
+
+    </body>
+</html>

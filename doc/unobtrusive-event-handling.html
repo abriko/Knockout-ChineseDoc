@@ -1,0 +1,363 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Knockout : Using unobtrusive event handlers</title> <link href="../css/tripoli.simple.css" type="text/css" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/smallScreen.css" media="only screen and (max-device-width: 800px)" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="../css/tripoli.simple.ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="../css/ie6ie7.css" /><![endif]-->
+        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../css/ie6.css" /><![endif]-->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/release.js"></script>
+		<!--[if lt IE 7]>
+<script defer type="text/javascript" src="../js/ie6pngfix.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css"/>  
+
+<script type="text/javascript">
+if (!window.jQuery)document.write('<script type="text/javascript" src="../js/jquery-1.7.2.min.js"><' + '/script>');
+    $(function() {
+		$('.cn').hover(function(){
+				var t = $(this);
+				t.next('.en').css('top',t.offset().top + t.height() + 10).css('left',t.offset().left).css('width',t.width()).fadeIn();
+			},function(){
+				$(this).next('.en').fadeOut();
+			});
+        // Fancy fonts
+        Cufon.replace('.titillium');
+        Cufon.replace('.engraved', {
+            textShadow: 'rgba(253, 224, 217, 0.45) 1.2px 1px'	
+        });
+        
+        // Syntax highlighting
+        $("pre > code").each(function() {
+            var codeText = $(this).text();
+            $(this).parent().text(codeText).addClass("brush:js");
+        });
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+        
+        // Highlight current top menu item
+        var desiredMenuItem = '' || 'documentation';
+        $(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+        
+        // Highlight current left-hand-nav menu item
+        var urlFilename = location.href.match(/\/([^\/]+)$/);
+        if (urlFilename) {
+            $(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])").addClass("active");
+        }
+    });
+</script> 
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="vspace"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">Home</a></li>
+        <li><a rel="installation" href="./installation.html">Download / Install</a></li>
+        <li><a rel="tutorials" href="http://learn.knockoutjs.com/">Tutorials</a></li>
+        <li><a rel="examples" href="../examples/">Live examples</a></li>
+        <li><a rel="documentation" href="./introduction.html">Documentation</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">Forum</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">Source</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+            <div class="vspace"></div>
+            <div>	
+	<div class="leftCol">		
+		<div class="leftColBackground">&nbsp;</div>
+		<div class="leftColContents">
+			<h1>入门</h1>
+
+<ol>
+    <li><a href="introduction.html">KO工作原理及带来的好处</a></li>
+    <li><a href="installation.html">下载安装</a></li>
+</ol>
+
+<h1>监控属性</h1>
+
+<ol>
+    <li><a href="observables.html">创建带有监控属性的 <em>view model</em></a></li>
+    <li><a href="computedObservables.html">使用<em>自动计算属性(Computed Observables)</em></a></li>
+    <li><a href="observableArrays.html">使用<em>监控数组(Observable Arrays)</em></a></li>	
+</ol>
+
+<h1>使用内置绑定</h1>
+
+<h2>控制文本和外观</h2>
+<ol>
+<li><a href="visible-binding.html"><code>visible</code> 绑定</a><a class="en" href="../visible-binding.html">The <code>visible</code> binding</a></li>
+<li><a href="text-binding.html"><code>text</code> 绑定</a></li>
+<li><a href="html-binding.html"><code>html</code> 绑定</a></li>
+<li><a href="css-binding.html"><code>css</code> 绑定</a></li>
+<li><a href="style-binding.html"><code>style</code> 绑定</a></li>
+<li><a href="attr-binding.html"><code>attr</code> 绑定</a></li>
+</ol>
+
+<h2>绑定逻辑控制</h2>
+<ol>
+<li><a href="foreach-binding.html"><code>foreach</code> 绑定</a></li>
+<li><a href="if-binding.html"><code>if</code> 绑定</a></li>
+<li><a href="ifnot-binding.html"><code>ifnot</code> 绑定</a></li>
+<li><a href="with-binding.html"><code>with</code> 绑定</a></li>
+</ol>
+
+<h2>处理表单属性</h2>
+<ol>
+    <li><a href="click-binding.html"><code>click</code> 绑定</a></li>
+    <li><a href="event-binding.html"><code>event</code> 绑定</a></li>
+    <li><a href="submit-binding.html"><code>submit</code> 绑定</a></li>
+    <li><a href="enable-binding.html"><code>enable</code> 绑定</a></li>
+    <li><a href="disable-binding.html"><code>disable</code> 绑定</a></li>
+    <li><a href="value-binding.html"><code>value</code> 绑定</a></li>
+    <li><a href="hasfocus-binding.html"><code>hasfocus</code> 绑定</a></li>
+    <li><a href="checked-binding.html"><code>checked</code> 绑定</a></li>
+    <li><a href="options-binding.html"><code>options</code> 绑定</a></li>
+    <li><a href="selectedOptions-binding.html"><code>selectedOptions</code> 绑定</a></li>    
+    <li><a href="uniqueName-binding.html"><code>uniqueName</code> 绑定</a></li>		
+</ol>
+
+<h2>解析模板</h2>
+<ol>
+    <li><a href="template-binding.html"><code>template</code> 绑定</a></li>
+</ol>
+
+<h2>高级应用</h2>
+<ol>
+    <li><a href="custom-bindings.html">自定义绑定</a></li>
+    <li><a href="json-data.html">读取和保存JSON数据</a></li>
+    <li><a href="extenders.html">扩展observables监控</a></li>
+    <li><a href="throttle-extender.html">The <code>throttle</code> extender</a></li>
+    <li><a href="unobtrusive-event-handling.html">非显式事件绑定</a></li>
+    <li><a href="fn.html"><code>fn</code> 自定义函数</a></li>
+</ol>
+
+<h2>插件</h2>
+<ol>
+    <li><a href="plugins-mapping.html"><code>mapping</code> 插件</a></li>
+</ol>
+
+<h1>更多信息</h1>
+<ol>
+    <li><a href="browser-support.html">浏览支持</a></li>
+    <li><a href="http://groups.google.com/group/knockoutjs">取得帮助</a></li>
+    <li><a href="links.html">在线例子</a></li>
+</ol>
+		</div>		
+	</div>
+	<div class="rightCol">
+		<div class="documentation sticker">
+		    <div class="content">
+		    	<h1>Using unobtrusive event handlers</h1>	
+		    	<p>In most cases, data-bind attributes provide a clean and succinct way to bind to a view model. However, event handling is one area that can often result in verbose data-bind attributes, as anonymous functions were typically the recommended techinique to pass arguments. For example:</p>
+
+<pre><code>&lt;a href=&quot;#&quot; data-bind=&quot;click: function() { viewModel.items.remove($data); }&quot;&gt;
+    remove
+&lt;/a&gt;</code></pre>
+
+<p>As an alternative, Knockout provides two helper functions that allow you to identify the data associated with a DOM element:</p>
+
+<ul>
+<li><code>ko.dataFor(element)</code> - returns the data that was available for binding against the element</li>
+
+<li><code>ko.contextFor(element)</code> - returns the entire <a href='binding-context.html'>binding context</a> that was available to the DOM element.</li>
+</ul>
+
+<p>These helper functions can be used in event handlers that are attached unobtrusively using something like jQuery&#8217;s <code>bind</code> or <code>click</code>. The above function could be attached to each link with a <code>remove</code> class like:</p>
+
+<pre><code>$(&quot;.remove&quot;).click(function () {
+    viewModel.items.remove(ko.dataFor(this));
+});</code></pre>
+
+<p>Better yet, this techinique could be used to support event delegation. jQuery&#8217;s <code>live/delegate/on</code> functions are an easy way to make this happen:</p>
+
+<pre><code>$(&quot;.remove&quot;).live(&quot;click&quot;, function() {
+    viewModel.items.remove(ko.dataFor(this));
+});</code></pre>
+
+<p>Now, a single event handler is attached at a higher level and handles clicks against any links with the <code>remove</code> class. This method has the added benefit of automatically handling additional links that are dynamically added to the document (perhaps as the result of an item being added to an observableArray).</p>
+
+<h3 id='live_example_nested_children'>Live example: nested children</h3>
+
+<p>This example shows &#8220;add&#8221; and &#8220;remove&#8221; links on multiple levels of parents and children with a single handler attached unobtrusively for each type of link. <style type='text/css'>
+   .liveExample a.add { font-size: .7em; color: #aaa; }
+   .liveExample a.remove { font-size: .9em; }
+</style></p>
+<div class='liveExample'>
+
+<ul data-bind='template: { name: "personTmpl", foreach: people }' id='people'>
+</ul>
+
+<script id='personTmpl' type='text/html'>
+    <li>
+        <a href='#' class='remove'> x </a>
+        <span data-bind='text: name' />
+        <a href='#' class='add'> add child </a>
+        <ul data-bind='template: { name: "personTmpl", foreach: children }' />
+    </li>
+</script>
+
+<script type='text/javascript'>
+
+/*<![CDATA[*/
+var Person = function(name, children) {
+    this.name = ko.observable(name);
+    this.children = ko.observableArray(children || []);
+};
+
+var PeopleModel = function() {
+    this.people = ko.observableArray([
+        new Person("Bob", [
+            new Person("Jan"),
+            new Person("Don", [
+                new Person("Ted"),
+                new Person("Ben", [
+                    new Person("Joe", [
+                        new Person("Ali"),
+                        new Person("Ken")
+                    ])
+                ]),
+                new Person("Doug")
+            ])
+        ]),
+        new Person("Ann", [
+            new Person("Eve"),
+            new Person("Hal")
+        ])
+    ]);
+
+    this.addChild = function(name, parentArray) {
+        parentArray.push(new Person(name));
+    };
+};
+
+ko.applyBindings(new PeopleModel());
+
+//attach event handlers
+$("#people").delegate(".remove", "click", function() {
+    //retrieve the context
+    var context = ko.contextFor(this),
+        parentArray = context.$parent.people || context.$parent.children;
+
+    //remove the data (context.$data) from the appropriate array on its parent (context.$parent)
+    parentArray.remove(context.$data);
+
+    return false;
+});
+
+$("#people").delegate(".add", "click", function() {
+    //retrieve the context
+    var context = ko.contextFor(this),
+        childName = context.$data.name() + " child",
+        parentArray = context.$data.people || context.$data.children;
+
+    //add a child to the appropriate parent, calling a method off of the main view model (context.$root)
+    context.$root.addChild(childName, parentArray);
+
+    return false;
+});
+
+/*]]>*/
+
+</script>
+</div><h4>Source code: View</h4><pre class='brush:html'>
+&lt;ul id=&quot;people&quot; data-bind='template: { name: &quot;personTmpl&quot;, foreach: people }'&gt;
+&lt;/ul&gt;
+
+&lt;script id=&quot;personTmpl&quot; type=&quot;text/html&quot;&gt;
+    &lt;li&gt;
+        &lt;a class=&quot;remove&quot; href=&quot;#&quot;&gt; x &lt;/a&gt;
+        &lt;span data-bind='text: name'&gt;&lt;/span&gt;
+        &lt;a class=&quot;add&quot; href=&quot;#&quot;&gt; add child &lt;/a&gt;
+        &lt;ul data-bind='template: { name: &quot;personTmpl&quot;, foreach: children }'&gt;&lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/script&gt;
+</pre><h4>Source code: View model</h4><pre class='brush:js'>
+var Person = function(name, children) {
+    this.name = ko.observable(name);
+    this.children = ko.observableArray(children || []);
+};
+
+var PeopleModel = function() {
+    this.people = ko.observableArray([
+        new Person(&quot;Bob&quot;, [
+            new Person(&quot;Jan&quot;),
+            new Person(&quot;Don&quot;, [
+                new Person(&quot;Ted&quot;),
+                new Person(&quot;Ben&quot;, [
+                    new Person(&quot;Joe&quot;, [
+                        new Person(&quot;Ali&quot;),
+                        new Person(&quot;Ken&quot;)
+                    ])
+                ]),
+                new Person(&quot;Doug&quot;)
+            ])
+        ]),
+        new Person(&quot;Ann&quot;, [
+            new Person(&quot;Eve&quot;),
+            new Person(&quot;Hal&quot;)
+        ])
+    ]);
+
+    this.addChild = function(name, parentArray) {
+        parentArray.push(new Person(name));
+    };
+};
+
+ko.applyBindings(new PeopleModel());
+
+//attach event handlers
+$(&quot;#people&quot;).delegate(&quot;.remove&quot;, &quot;click&quot;, function() {
+    //retrieve the context
+    var context = ko.contextFor(this),
+        parentArray = context.$parent.people || context.$parent.children;
+
+    //remove the data (context.$data) from the appropriate array on its parent (context.$parent)
+    parentArray.remove(context.$data);
+
+    return false;
+});
+
+$(&quot;#people&quot;).delegate(&quot;.add&quot;, &quot;click&quot;, function() {
+    //retrieve the context
+    var context = ko.contextFor(this),
+        childName = context.$data.name() + &quot; child&quot;,
+        parentArray = context.$data.people || context.$data.children;
+
+    //add a child to the appropriate parent, calling a method off of the main view model (context.$root)
+    context.$root.addChild(childName, parentArray);
+
+    return false;
+});
+
+</pre>
+<p>No matter how nested the links become, the handler is always able to identify and operate on the appropriate data. Using this techinique, we can avoid the overhead of attaching handlers to each individual link and can keep the markup clean and concise.</p>    
+		    </div>
+		    
+		    <div class="clear"></div>
+		</div>
+	</div>	
+</div>
+            <div class="clear"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">Home</a></li>
+        <li><a rel="installation" href="./installation.html">Download / Install</a></li>
+        <li><a rel="tutorials" href="http://learn.knockoutjs.com/">Tutorials</a></li>
+        <li><a rel="examples" href="../examples/">Live examples</a></li>
+        <li><a rel="documentation" href="./introduction.html">Documentation</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">Forum</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">Source</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+        </div>
+        
+    <div id="page-footer">(c) knockoutjs.com</div>
+
+    </body>
+</html>

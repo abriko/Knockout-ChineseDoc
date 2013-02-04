@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Knockout : 读取和保存JSON数据</title> <link href="../css/tripoli.simple.css" type="text/css" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/smallScreen.css" media="only screen and (max-device-width: 800px)" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="../css/tripoli.simple.ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="../css/ie6ie7.css" /><![endif]-->
+        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../css/ie6.css" /><![endif]-->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/release.js"></script>
+		<!--[if lt IE 7]>
+<script defer type="text/javascript" src="../js/ie6pngfix.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css"/>  
+
+<script type="text/javascript">
+if (!window.jQuery)document.write('<script type="text/javascript" src="../js/jquery-1.7.2.min.js"><' + '/script>');
+    $(function() {
+		$('.cn').hover(function(){
+				var t = $(this);
+				t.next('.en').css('top',t.offset().top + t.height() + 10).css('left',t.offset().left).css('width',t.width()).fadeIn();
+			},function(){
+				$(this).next('.en').fadeOut();
+			});
+        // Fancy fonts
+        Cufon.replace('.titillium');
+        Cufon.replace('.engraved', {
+            textShadow: 'rgba(253, 224, 217, 0.45) 1.2px 1px'	
+        });
+        
+        // Syntax highlighting
+        $("pre > code").each(function() {
+            var codeText = $(this).text();
+            $(this).parent().text(codeText).addClass("brush:js");
+        });
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+        
+        // Highlight current top menu item
+        var desiredMenuItem = '' || 'documentation';
+        $(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+        
+        // Highlight current left-hand-nav menu item
+        var urlFilename = location.href.match(/\/([^\/]+)$/);
+        if (urlFilename) {
+            $(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])").addClass("active");
+        }
+    });
+</script> 
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="vspace"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+            <div class="vspace"></div>
+            <div>	
+	<div class="leftCol">		
+		<div class="leftColBackground">&nbsp;</div>
+		<div class="leftColContents">
+			<h1>入门</h1>
+
+<ol>
+    <li><a href="introduction.html">KO工作原理及带来的好处</a></li>
+    <li><a href="installation.html">下载安装</a></li>
+</ol>
+
+<h1>监控属性</h1>
+
+<ol>
+    <li><a href="observables.html">创建带有监控属性的 <em>view model</em></a></li>
+    <li><a href="computedObservables.html">使用<em>自动计算属性(Computed Observables)</em></a></li>
+    <li><a href="observableArrays.html">使用<em>监控数组(Observable Arrays)</em></a></li>	
+</ol>
+
+<h1>使用内置绑定</h1>
+
+<h2>控制文本和外观</h2>
+<ol>
+<li><a href="visible-binding.html"><code>visible</code> 绑定</a><a class="en" href="visible-binding.html">The <code>visible</code> binding</a></li>
+<li><a href="text-binding.html"><code>text</code> 绑定</a></li>
+<li><a href="html-binding.html"><code>html</code> 绑定</a></li>
+<li><a href="css-binding.html"><code>css</code> 绑定</a></li>
+<li><a href="style-binding.html"><code>style</code> 绑定</a></li>
+<li><a href="attr-binding.html"><code>attr</code> 绑定</a></li>
+</ol>
+
+<h2>绑定逻辑控制</h2>
+<ol>
+<li><a href="foreach-binding.html"><code>foreach</code> 绑定</a></li>
+<li><a href="if-binding.html"><code>if</code> 绑定</a></li>
+<li><a href="ifnot-binding.html"><code>ifnot</code> 绑定</a></li>
+<li><a href="with-binding.html"><code>with</code> 绑定</a></li>
+</ol>
+
+<h2>处理表单属性</h2>
+<ol>
+    <li><a href="click-binding.html"><code>click</code> 绑定</a></li>
+    <li><a href="event-binding.html"><code>event</code> 绑定</a></li>
+    <li><a href="submit-binding.html"><code>submit</code> 绑定</a></li>
+    <li><a href="enable-binding.html"><code>enable</code> 绑定</a></li>
+    <li><a href="disable-binding.html"><code>disable</code> 绑定</a></li>
+    <li><a href="value-binding.html"><code>value</code> 绑定</a></li>
+    <li><a href="hasfocus-binding.html"><code>hasfocus</code> 绑定</a></li>
+    <li><a href="checked-binding.html"><code>checked</code> 绑定</a></li>
+    <li><a href="options-binding.html"><code>options</code> 绑定</a></li>
+    <li><a href="selectedOptions-binding.html"><code>selectedOptions</code> 绑定</a></li>    
+    <li><a href="uniqueName-binding.html"><code>uniqueName</code> 绑定</a></li>		
+</ol>
+
+<h2>解析模板</h2>
+<ol>
+    <li><a href="template-binding.html"><code>template</code> 绑定</a></li>
+</ol>
+
+<h2>高级应用</h2>
+<ol>
+    <li><a href="custom-bindings.html">自定义绑定</a></li>
+    <li><a href="json-data.html">读取和保存JSON数据</a></li>
+    <li><a href="extenders.html">扩展observables监控</a></li>
+    <li><a href="throttle-extender.html">The <code>throttle</code> extender</a></li>
+    <li><a href="unobtrusive-event-handling.html">非显式事件绑定</a></li>
+    <li><a href="fn.html"><code>fn</code> 自定义函数</a></li>
+</ol>
+
+<h2>插件</h2>
+<ol>
+    <li><a href="plugins-mapping.html"><code>mapping</code> 插件</a></li>
+</ol>
+
+<h1>更多信息</h1>
+<ol>
+    <li><a href="browser-support.html">浏览支持</a></li>
+    <li><a href="http://groups.google.com/group/knockoutjs">取得帮助</a></li>
+    <li><a href="links.html">在线例子</a></li>
+</ol>
+		</div>		
+	</div>
+	<div class="rightCol">
+		<div class="documentation sticker">
+		    <div class="content">
+		    	<h1>读取和保存JSON数据</h1>	
+		    	<p class="cn">Knockout可以实现很复杂的客户端交互，但是几乎所有的web应用程序都要和服务器端交换数据（至少为了本地存储需要序列化数据），交换数据最方便的就是使用<a href='http://json.org/'>JSON format</a> – 大多数的Ajax应用程序也是使用这种格式。</p>
+                <p class="en">Knockout allows you to implement sophisticated client-side interactivity, but almost all web applications also need to exchange data with the server, or at least to serialize the data for local storage. The most convenient way to exchange or store data is in <a href='http://json.org/'>JSON format</a> - the format that the majority of Ajax applications use today.</p>
+
+<h3 id='loading_or_saving_data'>加载或保存数据</h3>
+
+<p class="cn">Knockout不限制你用任何技术加载和保存数据。你可以使用任何技术和服务器来交互。用的最多的是使用jQuery的Ajax帮助，例如： <a href='http://api.jquery.com/jQuery.getJSON/'><code>getJSON</code></a>， <a href='http://api.jquery.com/jQuery.post/'><code>post</code></a>， 和<a href='http://api.jquery.com/jQuery.ajax/'><code>ajax</code></a>。你可以通过这些方法从服务器端获取数据：</p>
+<p class="en">Knockout doesn&#8217;t force you to use any one particular technique to load or save data. You can use whatever mechanism is a convenient fit for your chosen server-side technology. The most commonly-used mechanism is jQuery&#8217;s Ajax helper methods, such as <a href='http://api.jquery.com/jQuery.getJSON/'><code>getJSON</code></a>, <a href='http://api.jquery.com/jQuery.post/'><code>post</code></a>, and <a href='http://api.jquery.com/jQuery.ajax/'><code>ajax</code></a>. You can fetch data from the server:</p>
+
+<pre><code>$.getJSON(&quot;/some/url&quot;, function(data) { 
+	// Now use this data to update your view models, 
+	// and Knockout will update your UI automatically 
+})</code></pre>
+
+<p>&#8230; 或者向服务器端发送数据：</p>
+
+<pre><code>var data = /* Your data in JSON format - see below */;
+$.post(&quot;/some/url&quot;, data, function(returnedData) {
+	// This callback is executed if the post was successful		
+})</code></pre>
+
+<p class="cn">或者，如果你不想用jQuery，你可以用任何其它的方式来读取或保存JSON数据。所以， Knockout需要你做的仅仅是：</p>
+<p class="en">Or, if you don&#8217;t want to use jQuery, you can use any other mechanism for loading or saving JSON data. So, all Knockout needs to help you do is:</p>
+
+<ul class="cn">
+<li>对于保存，让你的view model数据转换成简单的JSON格式，以方便使用上面的技术来保存数据。</li>
+
+<li>对于加载，更新你接收到的数据到你的view model上。</li>
+</ul>
+<ul class="en">
+<li>For saving, get your view model data into a simple JSON format so you can send it using one of the above techniques</li>
+
+<li>For loading, update your view model using data that you&#8217;ve received using one of the above techniques</li>
+</ul>
+
+<h3 id='converting_view_model_data_to_plain_json'>转换View Model数据到JSON格式</h3>
+
+<p class="cn">由于view model<em>都是</em>JavaScript对象，所以你需要使用标准的JSON序列化工具让转化view model为JSON格式。例如，可以使用 <code>JSON.serialize()</code> （新版本浏览器才支持的原生方法），或者使用 <a href='https://github.com/douglascrockford/JSON-js/blob/master/json2.js'><code>json2.js</code></a> 类库。不过你的view model可能包括observables，依赖对象dependent observables和observable数组，有可能不能很好的序列化，你需要自己额外的处理一下数据。</p>
+<p class="en">Your view models <em>are</em> JavaScript objects, so in a sense, you could just serialize them as JSON using any standard JSON serializer, such as <code>JSON.serialize()</code> (a native function in modern browsers), or the <a href='https://github.com/douglascrockford/JSON-js/blob/master/json2.js'><code>json2.js</code></a> library. However, your view models probably contain observables, computed observables, and observable arrays, which are implemented as JavaScript functions and therefore won&#8217;t always serialize cleanly without additional work on your behalf.</p>
+
+<p class="cn">为了使view model数据序列化方便（包括序列化observables等格式），Knockout提供了2个帮助函数：</p>
+<p class="en">To make it easy to serialize view model data, including observables and the like, Knockout includes two helper functions:</p>
+
+<ul>
+<li class="cn"><code>ko.toJS</code> &#8212; 克隆你的view model对象，并且替换所有的observable 对象为当前的值，这样你可以得到一个干净的和Knockout无关的数据copy。</li>
+<li class="en"><code>ko.toJS</code> &#8212; this clones your view model&#8217;s object graph, substituting for each observable the current value of that observable, so you get a plain copy that contains only your data and no Knockout-related artifacts</li>
+
+<li class="cn"><code>ko.toJSON</code> &#8212; 将view model对象转化成JSON字符串。原理就是：先调在view model上调用 <code>ko.toJS</code> ，然后调用浏览器原生的JSON 序列化器得到结果。注：一些老浏览器版本不支持原生的JSON 序列化器（例如：IE7和以前的版本），你需要引用<a href='https://github.com/douglascrockford/JSON-js/blob/master/json2.js'><code>json2.js</code></a> 类库。</li>
+<li class="en"><code>ko.toJSON</code> &#8212; this produces a JSON string representing your view model&#8217;s data. Internally, it simply calls <code>ko.toJS</code> on your view model, and then uses the browser&#8217;s native JSON serializer on the result. Note: for this to work on older browsers that have no native JSON serializer (e.g., IE 7 or earlier), you must also reference the <a href='https://github.com/douglascrockford/JSON-js/blob/master/json2.js'><code>json2.js</code></a> library.</li>
+</ul>
+
+<p>这个例子中,声明一个view model：</p>
+
+<pre><code>var viewModel = {
+    firstName : ko.observable(&quot;Bert&quot;),
+    lastName : ko.observable(&quot;Smith&quot;),
+    pets : ko.observableArray([&quot;Cat&quot;, &quot;Dog&quot;, &quot;Fish&quot;]),
+    type : &quot;Customer&quot;
+};
+viewModel.hasALotOfPets = ko.computed(function() {
+    return this.pets().length &gt; 2
+}, viewModel)</code></pre>
+
+<p class="cn">该view model包含observable类型的值，依赖类型的值dependent observable以及依赖数组observable array，和普通对象。你可以像如下代码一样使用 <code>ko.toJSON</code> 将此转化成服务器端使用的JSON 字符串：</p>
+<p class="en">This contains a mix of observables, computed observables, observable arrays, and plain values. You can convert it to a JSON string suitable for sending to the server using <code>ko.toJSON</code> as follows:</p>
+
+<pre><code>var jsonData = ko.toJSON(viewModel);
+
+// Result: jsonData is now a string equal to the following value
+// &#39;{&quot;firstName&quot;:&quot;Bert&quot;,&quot;lastName&quot;:&quot;Smith&quot;,&quot;pets&quot;:[&quot;Cat&quot;,&quot;Dog&quot;,&quot;Fish&quot;],&quot;type&quot;:&quot;Customer&quot;,&quot;hasALotOfPets&quot;:true}&#39;</code></pre>
+
+<p class="cn">或者，序列化<em>之前</em>，你想得到JavaScript简单对象的话，直接使用像这样一样使用 <code>ko.toJS</code>：</p>
+<p class="en">Or, if you just want the plain JavaScript object graph <em>before</em> serialization, use <code>ko.toJS</code> as follows:</p>
+
+<pre><code>var plainJs = ko.toJS(viewModel);
+
+// Result: plainJS is now a plain JavaScript object in which nothing is observable. It&#39;s just data.
+// The object is equivalent to the following:
+//   {
+//      firstName: &quot;Bert&quot;,
+//      lastName: &quot;Smith&quot;,
+//      pets: [&quot;Cat&quot;,&quot;Dog&quot;,&quot;Fish&quot;],
+//      type: &quot;Customer&quot;,
+//      hasALotOfPets: true
+//   }</code></pre>
+
+<p class="cn">注意 <code>ko.toJSON</code> 接受参数 <a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/JSON/stringify'>JSON.stringify</a>。例如，当调试Knockout应用时它可以用 &#8220;live&#8221; 来表示你的。生成一个用于此目的的很好的格式化显示，你可以传递<em>空间</em>参数给 <code>ko.toJSON</code> 来绑定你的view model：</p>
+<p class="en">Note that <code>ko.toJSON</code> accepts the same arguments as <a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/JSON/stringify'>JSON.stringify</a>. For example, it can be useful to have a &#8220;live&#8221; representation of your view model data when debugging a Knockout application. To generate a nicely formatted display for this purpose, you can pass the <em>spaces</em> argument into <code>ko.toJSON</code> and bind against your view model like:</p>
+
+<pre><code>&lt;pre data-bind=&quot;text: ko.toJSON($root, null, 2)&quot;&gt;&lt;/pre&gt;</code></pre>
+
+<h3 id='updating_view_model_data_using_json'>使用JSON更新View Model数据</h3>
+
+<p class="cn">如果你从服务器端获取数据并且更新到view model上，最简单的方式是自己实现。例如，</p>
+<p class="en">If you&#8217;ve loaded some data from the server and want to use it to update your view model, the most straightforward way is to do it yourself. For example,</p>
+
+<pre><code>// Load and parse the JSON
+var someJSON = /* Omitted: fetch it from the server however you want */;
+var parsed = JSON.parse(someJSON);
+
+// Update view model properties
+viewModel.firstName(parsed.firstName);
+viewModel.pets(parsed.pets);</code></pre>
+
+<p class="cn">很多情况下，最直接的方法就是最简单而且最灵活的方式。当然，如果你更新了view model的属性，Knockout会自动帮你更新相关的UI元素的。</p>
+<p class="en">In many scenarios, this direct approach is the simplest and most flexible solution. Of course, as you update the properties on your view model, Knockout will take care of updating the visible UI to match it.</p>
+
+<p class="cn">不过，很多开发人员还是喜欢使用一种好用而不是每次都写代码的方式来转化数据到view model上，尤其是view model有很多属性或者嵌套的数据结构的时候，这很有用，因为可以节约很多代码量。 <a href='plugins-mapping.html'>the knockout.mapping</a> 插件可以帮你做到这一点。</p> 
+<p class="en">However, many developers prefer to use a more conventions-based approach to updating their view models using incoming data without manually writing a line of code for every property to be updated. This can be beneficial if your view models have many properties, or deeply nested data structures, because it can greatly reduce the amount of manual mapping code you need to write. For more details about this technique, see <a href='plugins-mapping.html'>the knockout.mapping plugin</a>.</p>       
+		    </div>
+		    
+		    <div class="clear"></div>
+		</div>
+	</div>	
+</div>
+            <div class="clear"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+        </div>
+        
+    <div id="page-footer">(c) knockoutjs.com</div>
+
+    </body>
+</html>

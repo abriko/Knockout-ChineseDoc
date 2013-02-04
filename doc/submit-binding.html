@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Knockout : &quot;submit&quot; 绑定</title> <link href="../css/tripoli.simple.css" type="text/css" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/smallScreen.css" media="only screen and (max-device-width: 800px)" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="../css/tripoli.simple.ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="../css/ie6ie7.css" /><![endif]-->
+        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../css/ie6.css" /><![endif]-->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/release.js"></script>
+		<!--[if lt IE 7]>
+<script defer type="text/javascript" src="../js/ie6pngfix.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css"/>  
+
+<script type="text/javascript">
+if (!window.jQuery)document.write('<script type="text/javascript" src="../js/jquery-1.7.2.min.js"><' + '/script>');
+    $(function() {
+		$('.cn').hover(function(){
+				var t = $(this);
+				t.next('.en').css('top',t.offset().top + t.height() + 10).css('left',t.offset().left).css('width',t.width()).fadeIn();
+			},function(){
+				$(this).next('.en').fadeOut();
+			});
+        // Fancy fonts
+        Cufon.replace('.titillium');
+        Cufon.replace('.engraved', {
+            textShadow: 'rgba(253, 224, 217, 0.45) 1.2px 1px'	
+        });
+        
+        // Syntax highlighting
+        $("pre > code").each(function() {
+            var codeText = $(this).text();
+            $(this).parent().text(codeText).addClass("brush:js");
+        });
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+        
+        // Highlight current top menu item
+        var desiredMenuItem = '' || 'documentation';
+        $(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+        
+        // Highlight current left-hand-nav menu item
+        var urlFilename = location.href.match(/\/([^\/]+)$/);
+        if (urlFilename) {
+            $(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])").addClass("active");
+        }
+    });
+</script> 
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="vspace"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+            <div class="vspace"></div>
+            <div>	
+	<div class="leftCol">		
+		<div class="leftColBackground">&nbsp;</div>
+		<div class="leftColContents">
+			<h1>入门</h1>
+
+<ol>
+    <li><a href="introduction.html">KO工作原理及带来的好处</a></li>
+    <li><a href="installation.html">下载安装</a></li>
+</ol>
+
+<h1>监控属性</h1>
+
+<ol>
+    <li><a href="observables.html">创建带有监控属性的 <em>view model</em></a></li>
+    <li><a href="computedObservables.html">使用<em>自动计算属性(Computed Observables)</em></a></li>
+    <li><a href="observableArrays.html">使用<em>监控数组(Observable Arrays)</em></a></li>	
+</ol>
+
+<h1>使用内置绑定</h1>
+
+<h2>控制文本和外观</h2>
+<ol>
+<li><a href="visible-binding.html"><code>visible</code> 绑定</a><a class="en" href="visible-binding.html">The <code>visible</code> binding</a></li>
+<li><a href="text-binding.html"><code>text</code> 绑定</a></li>
+<li><a href="html-binding.html"><code>html</code> 绑定</a></li>
+<li><a href="css-binding.html"><code>css</code> 绑定</a></li>
+<li><a href="style-binding.html"><code>style</code> 绑定</a></li>
+<li><a href="attr-binding.html"><code>attr</code> 绑定</a></li>
+</ol>
+
+<h2>绑定逻辑控制</h2>
+<ol>
+<li><a href="foreach-binding.html"><code>foreach</code> 绑定</a></li>
+<li><a href="if-binding.html"><code>if</code> 绑定</a></li>
+<li><a href="ifnot-binding.html"><code>ifnot</code> 绑定</a></li>
+<li><a href="with-binding.html"><code>with</code> 绑定</a></li>
+</ol>
+
+<h2>处理表单属性</h2>
+<ol>
+    <li><a href="click-binding.html"><code>click</code> 绑定</a></li>
+    <li><a href="event-binding.html"><code>event</code> 绑定</a></li>
+    <li><a href="submit-binding.html"><code>submit</code> 绑定</a></li>
+    <li><a href="enable-binding.html"><code>enable</code> 绑定</a></li>
+    <li><a href="disable-binding.html"><code>disable</code> 绑定</a></li>
+    <li><a href="value-binding.html"><code>value</code> 绑定</a></li>
+    <li><a href="hasfocus-binding.html"><code>hasfocus</code> 绑定</a></li>
+    <li><a href="checked-binding.html"><code>checked</code> 绑定</a></li>
+    <li><a href="options-binding.html"><code>options</code> 绑定</a></li>
+    <li><a href="selectedOptions-binding.html"><code>selectedOptions</code> 绑定</a></li>    
+    <li><a href="uniqueName-binding.html"><code>uniqueName</code> 绑定</a></li>		
+</ol>
+
+<h2>解析模板</h2>
+<ol>
+    <li><a href="template-binding.html"><code>template</code> 绑定</a></li>
+</ol>
+
+<h2>高级应用</h2>
+<ol>
+    <li><a href="custom-bindings.html">自定义绑定</a></li>
+    <li><a href="json-data.html">读取和保存JSON数据</a></li>
+    <li><a href="extenders.html">扩展observables监控</a></li>
+    <li><a href="throttle-extender.html">The <code>throttle</code> extender</a></li>
+    <li><a href="unobtrusive-event-handling.html">非显式事件绑定</a></li>
+    <li><a href="fn.html"><code>fn</code> 自定义函数</a></li>
+</ol>
+
+<h2>插件</h2>
+<ol>
+    <li><a href="plugins-mapping.html"><code>mapping</code> 插件</a></li>
+</ol>
+
+<h1>更多信息</h1>
+<ol>
+    <li><a href="browser-support.html">浏览支持</a></li>
+    <li><a href="http://groups.google.com/group/knockoutjs">取得帮助</a></li>
+    <li><a href="links.html">在线例子</a></li>
+</ol>
+		</div>		
+	</div>
+	<div class="rightCol">
+		<div class="documentation sticker">
+		    <div class="content">
+		    	<h1>"submit" 绑定</h1>	
+		    	<h3 id='purpose'>目的</h3>
+
+<p class="cn"><code>submit</code> 绑定在form表单上添加指定的事件句柄以便该form被提交的时候执行定义的JavaScript 函数。只能用在表单 <code>form</code> 元素上。</p>
+<p class="en">The <code>submit</code> binding adds an event handler so that your chosen JavaScript function will be invoked when the associated DOM element is submitted. Typically you will only want to use this on <code>form</code> elements.</p>
+
+<p class="cn">当你使用 <code>submit</code>绑定的时候， Knockout会阻止form表单默认的submit动作。换句话说，浏览器会执行你定义的绑定函数而不会提交这个form表单到服务器上。可以很好地解释这个，使用 <code>submit</code> 绑定就是为了处理view model的自定义函数的，而不是再使用普通的HTML form表单。 如果你要<em>继续</em>执行默认的HTML form表单操作，你可以在你的 <code>submit</code> 句柄里返回 <code>true</code> 。</p>
+<p class="en">When you use the <code>submit</code> binding on a form, Knockout will prevent the browser&#8217;s default submit action for that form. In other words, the browser will call your handler function but will <em>not</em> submit the form to the server. This is a useful default because when you use the <code>submit</code> binding, it&#8217;s normally because you&#8217;re using the form as an interface to your view model, not as a regular HTML form. If you <em>do</em> want to let the form submit like a normal HTML form, just return <code>true</code> from your <code>submit</code> handler.</p>
+
+<h3 id='example'>例子</h3>
+
+<pre><code>&lt;form data-bind=&quot;submit: doSomething&quot;&gt;
+    ... form contents go here ...
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var viewModel = {
+        doSomething : function(formElement) {
+            // ... now do something	
+        }
+    };
+&lt;/script&gt;</code></pre>
+
+<p class="cn">这个例子里，KO将把整个form表单元素作为参数传递到你的submit绑定函数里。 你可以忽略不管，但是有些例子里是否有用，参考：<a href='post-json.html'><code>ko.postJson</code></a>工具。</p>
+<p class="en">As illustrated in this example, KO passes the form element as a parameter to your submit handler function. You can ignore that parameter if you want, but for an example of when it&#8217;s useful to have a reference to that element, see the docs for <a href='post-json.html'>the <code>ko.postJson</code> utility</a>.</p>
+
+<h3 id='why_not_just_put_a__handler_on_the_submit_button'>为什么不在submit按钮上使用 <code>click</code> 绑定？</h3>
+
+<p class="cn">在form上，你<em>可以</em>使用 <code>click</code> 绑定代替 <code>submit</code> 绑定。不过 <code>submit</code> 可以处理其它的函数行为，比如在输入框里输入<em>回车</em>回车的时候可以提交表单。</p>
+<p class="en">Instead of using <code>submit</code> on the form, you <em>could</em> use <code>click</code> on the submit button. However, <code>submit</code> has the advantage that it also captures alternative ways to submit the form, such as pressing the <em>enter</em> key while typing into a text box.</p>
+
+<h3 id='parameters'>参数</h3>
+
+<ul>
+<li>
+<p>主参数</p>
+
+<p class="cn">你绑定到 <code>submit</code> 事件上的函数。</p>
+<p class="en">The function you want to bind to the element&#8217;s <code>submit</code> event.</p>
+
+<p class="cn">你可以声明任何JavaScript函数 – 不一定非要是view model里的函数。你可以声明任意对象上的任何函数，例如： <code>submit: someObject.someFunction</code> 。</p>
+<p class="en">You can reference any JavaScript function - it doesn&#8217;t have to be a function on your view model. You can reference a function on any object by writing <code>submit: someObject.someFunction</code>.</p>
+
+<p class="cn">View model上的函数在用的时候有一点点特殊，就是不需要引用对象的，直接引用函数本身就行了，比如直接写 <code>submit: doSomething</code> 就可以了，而<em>无需</em>写成： <code>submit: viewModel.doSomething</code> （尽管是合法的）。</p>
+<p class="en">Functions on your view model are slightly special because you can reference them by name, i.e., you can write <code>submit: doSomething</code> and <em>don&#8217;t</em> have to write <code>submit: viewModel.doSomething</code> (though technically that&#8217;s also valid).</p>
+</li>
+
+<li>
+<p>其它参数</p>
+
+<ul>
+<li>无</li>
+</ul>
+</li>
+</ul>
+
+<h3 id='notes'>备注</h3>
+
+<p class="cn">关于如果传递更多的参数给submit绑定函数，或者当调用非view model里的函数的时如何控制 <code>this</code> ，请参考 <a href='click-binding.html'>click</a>绑定。所有click绑定相关的备注也都适用于 <code>submit</code> 绑定。</p>
+<p class="en">For information about how to pass additional parameters to your submit handler function, or how to control the <code>this</code> handle when invoking functions that aren&#8217;t on your view model, see the notes relating to the <a href='click-binding.html'>click binding</a>. All the notes on that page apply to <code>submit</code> handlers too.</p>
+
+<h3 id='dependencies'>依赖性</h3>
+
+<p>除KO核心类库外，无依赖。</p>    
+		    </div>
+		    
+		    <div class="clear"></div>
+		</div>
+	</div>	
+</div>
+            <div class="clear"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+        </div>
+        
+    <div id="page-footer">(c) knockoutjs.com</div>
+
+    </body>
+</html>

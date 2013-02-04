@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Knockout : &quot;template&quot; 绑定</title> <link href="../css/tripoli.simple.css" type="text/css" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/smallScreen.css" media="only screen and (max-device-width: 800px)" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="../css/tripoli.simple.ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="../css/ie6ie7.css" /><![endif]-->
+        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../css/ie6.css" /><![endif]-->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/release.js"></script>
+		<!--[if lt IE 7]>
+<script defer type="text/javascript" src="../js/ie6pngfix.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css"/>  
+
+<script type="text/javascript">
+if (!window.jQuery)document.write('<script type="text/javascript" src="../js/jquery-1.7.2.min.js"><' + '/script>');
+    $(function() {
+		$('.cn').hover(function(){
+				var t = $(this);
+				t.next('.en').css('top',t.offset().top + t.height() + 10).css('left',t.offset().left).css('width',t.width()).fadeIn();
+			},function(){
+				$(this).next('.en').fadeOut();
+			});
+        // Fancy fonts
+        Cufon.replace('.titillium');
+        Cufon.replace('.engraved', {
+            textShadow: 'rgba(253, 224, 217, 0.45) 1.2px 1px'	
+        });
+        
+        // Syntax highlighting
+        $("pre > code").each(function() {
+            var codeText = $(this).text();
+            $(this).parent().text(codeText).addClass("brush:js");
+        });
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+        
+        // Highlight current top menu item
+        var desiredMenuItem = '' || 'documentation';
+        $(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+        
+        // Highlight current left-hand-nav menu item
+        var urlFilename = location.href.match(/\/([^\/]+)$/);
+        if (urlFilename) {
+            $(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])").addClass("active");
+        }
+    });
+</script> 
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="vspace"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+            <div class="vspace"></div>
+            <div>	
+	<div class="leftCol">		
+		<div class="leftColBackground">&nbsp;</div>
+		<div class="leftColContents">
+			<h1>入门</h1>
+
+<ol>
+    <li><a href="introduction.html">KO工作原理及带来的好处</a></li>
+    <li><a href="installation.html">下载安装</a></li>
+</ol>
+
+<h1>监控属性</h1>
+
+<ol>
+    <li><a href="observables.html">创建带有监控属性的 <em>view model</em></a></li>
+    <li><a href="computedObservables.html">使用<em>自动计算属性(Computed Observables)</em></a></li>
+    <li><a href="observableArrays.html">使用<em>监控数组(Observable Arrays)</em></a></li>	
+</ol>
+
+<h1>使用内置绑定</h1>
+
+<h2>控制文本和外观</h2>
+<ol>
+<li><a href="visible-binding.html"><code>visible</code> 绑定</a><a class="en" href="visible-binding.html">The <code>visible</code> binding</a></li>
+<li><a href="text-binding.html"><code>text</code> 绑定</a></li>
+<li><a href="html-binding.html"><code>html</code> 绑定</a></li>
+<li><a href="css-binding.html"><code>css</code> 绑定</a></li>
+<li><a href="style-binding.html"><code>style</code> 绑定</a></li>
+<li><a href="attr-binding.html"><code>attr</code> 绑定</a></li>
+</ol>
+
+<h2>绑定逻辑控制</h2>
+<ol>
+<li><a href="foreach-binding.html"><code>foreach</code> 绑定</a></li>
+<li><a href="if-binding.html"><code>if</code> 绑定</a></li>
+<li><a href="ifnot-binding.html"><code>ifnot</code> 绑定</a></li>
+<li><a href="with-binding.html"><code>with</code> 绑定</a></li>
+</ol>
+
+<h2>处理表单属性</h2>
+<ol>
+    <li><a href="click-binding.html"><code>click</code> 绑定</a></li>
+    <li><a href="event-binding.html"><code>event</code> 绑定</a></li>
+    <li><a href="submit-binding.html"><code>submit</code> 绑定</a></li>
+    <li><a href="enable-binding.html"><code>enable</code> 绑定</a></li>
+    <li><a href="disable-binding.html"><code>disable</code> 绑定</a></li>
+    <li><a href="value-binding.html"><code>value</code> 绑定</a></li>
+    <li><a href="hasfocus-binding.html"><code>hasfocus</code> 绑定</a></li>
+    <li><a href="checked-binding.html"><code>checked</code> 绑定</a></li>
+    <li><a href="options-binding.html"><code>options</code> 绑定</a></li>
+    <li><a href="selectedOptions-binding.html"><code>selectedOptions</code> 绑定</a></li>    
+    <li><a href="uniqueName-binding.html"><code>uniqueName</code> 绑定</a></li>		
+</ol>
+
+<h2>解析模板</h2>
+<ol>
+    <li><a href="template-binding.html"><code>template</code> 绑定</a></li>
+</ol>
+
+<h2>高级应用</h2>
+<ol>
+    <li><a href="custom-bindings.html">自定义绑定</a></li>
+    <li><a href="json-data.html">读取和保存JSON数据</a></li>
+    <li><a href="extenders.html">扩展observables监控</a></li>
+    <li><a href="throttle-extender.html">The <code>throttle</code> extender</a></li>
+    <li><a href="unobtrusive-event-handling.html">非显式事件绑定</a></li>
+    <li><a href="fn.html"><code>fn</code> 自定义函数</a></li>
+</ol>
+
+<h2>插件</h2>
+<ol>
+    <li><a href="plugins-mapping.html"><code>mapping</code> 插件</a></li>
+</ol>
+
+<h1>更多信息</h1>
+<ol>
+    <li><a href="browser-support.html">浏览支持</a></li>
+    <li><a href="http://groups.google.com/group/knockoutjs">取得帮助</a></li>
+    <li><a href="links.html">在线例子</a></li>
+</ol>
+		</div>		
+	</div>
+	<div class="rightCol">
+		<div class="documentation sticker">
+		    <div class="content">
+		    	<h1>"template" 绑定</h1>	
+		    	<h3 id='purpose'>目的</h3>
+
+<p class="cn"><code>template</code> 绑定将数据填充到关联的DOM模板中。模板是一个构建复杂用户界面的简单方式。</p>
+<p class="en">The <code>template</code> binding populates the associated DOM element with the results of rendering a template. Templates are a simple and convenient way to build sophisticated UI structures - possibly with repeating or nested blocks - as a function of your view model data.</p>
+
+<p>使用模板主要有两个途径:</p>
+
+<ul class="cn">
+<li><em>母版</em>是在HTML元素中包含 <code>foreach</code>， <code>if</code>，<code>with</code>， 和其他流程控制绑定。并使用它们作为模板的呈现对象，此为Knockout内置功能不需要引用其他外部库。</li>
+
+<li><em>字符串解析模板</em>是一个 Knockout 连接到第三方模板引擎的方法。 Knockout will pass your model values to the external template engine and inject the resulting markup string into your document. See below for examples that use the <em>jquery.tmpl</em> and <em>Underscore</em> template engines.</li>
+</ul>
+<ul class="en">
+<li><em>Native templating</em> is the mechanism that underpins <code>foreach</code>, <code>if</code>, <code>with</code>, and other control flow bindings. Internally, those control flow bindings capture the HTML markup contained in your element, and use it as a template to render against an arbitrary data item. This feature is built into Knockout and doesn&#8217;t require any external library.</li>
+
+<li><em>String-based templating</em> is a way to connect Knockout to a third-party template engine. Knockout will pass your model values to the external template engine and inject the resulting markup string into your document. See below for examples that use the <em>jquery.tmpl</em> and <em>Underscore</em> template engines.</li>
+</ul>
+
+<h3 id='parameters'>Parameters</h3>
+
+<ul>
+<li>
+<p>Main parameter</p>
+
+<ul>
+<li>
+<p>Shorthand syntax: If you just supply a string value, KO will interpret this as the ID of a template to render. The data it supplies to the template will be your current model object.</p>
+</li>
+
+<li>
+<p>For more control, pass a JavaScript object with some combination of the following properties:</p>
+
+<ul>
+<li><code>name</code> &#8212; the ID of an element that contains the template you wish to render - see <a href='#note_4_dynamically_choosing_which_template_is_used'>Note 4</a> for how to vary this programmatically.</li>
+
+<li><code>data</code> &#8212; an object to supply as the data for the template to render. If you omit this parameter, KO will look for a <code>foreach</code> parameter, or will fall back on using your current model object.</li>
+
+<li><code>foreach</code> &#8212; instructs KO to render the template in &#8220;foreach&#8221; mode - see <a href='#note_2_using_the_foreach_option_with_a_named_template'>Note 2</a> for details.</li>
+
+<li><code>afterRender</code>, <code>afterAdd</code>, or <code>beforeRemove</code> &#8212; callback functions to be invoked against the rendered DOM elements - see <a href='#note_3_using_afterrender_afteradd_and_beforeremove'>Note 3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h3 id='note_1_rendering_a_named_template'>Note 1: Rendering a named template</h3>
+
+<p>Normally, when you&#8217;re using control flow bindings (<code>foreach</code>, <code>with</code>, <code>if</code>, etc.), there&#8217;s no need to give names to your templates: they are defined implicitly and anonymously by the markup inside your DOM element. But if you want to, you can factor out templates into a separate element and then reference them by name:</p>
+
+<pre><code>&lt;h2&gt;Participants&lt;/h2&gt;
+Here are the participants:
+&lt;div data-bind=&quot;template: { name: &#39;person-template&#39;, data: buyer }&quot;&gt;&lt;/div&gt;
+&lt;div data-bind=&quot;template: { name: &#39;person-template&#39;, data: seller }&quot;&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/html&quot; id=&quot;person-template&quot;&gt;
+    &lt;h3 data-bind=&quot;text: name&quot;&gt;&lt;/h3&gt;
+    &lt;p&gt;Credits: &lt;span data-bind=&quot;text: credits&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+     function MyViewModel() {
+         this.buyer = { name: &#39;Franklin&#39;, credits: 250 };
+         this.seller = { name: &#39;Mario&#39;, credits: 5800 };     
+     }
+     ko.applyBindings(new MyViewModel());        
+&lt;/script&gt;</code></pre>
+
+<p>In this example, the <code>person-template</code> markup is used twice: once for <code>buyer</code>, and once for <code>seller</code>. Notice that the template markup is wrapped in a <code>&lt;script type=&quot;text/html&quot;&gt;</code> &#8212; the dummy <code>type</code> attribute is necessary to ensure that the markup is not executed as JavaScript, and Knockout does not attempt to apply bindings to that markup except when it is being used as a template.</p>
+
+<p>It&#8217;s not very often that you&#8217;ll need to use named templates, but on occasion it can help to minimise duplication of markup.</p>
+
+<h3 id='note_2_using_the_foreach_option_with_a_named_template'>Note 2: Using the &#8220;foreach&#8221; option with a named template</h3>
+
+<p>If you want the equivalent of a <code>foreach</code> binding, but using a named template, you can do so in the natural way:</p>
+
+<pre><code>&lt;h2&gt;Participants&lt;/h2&gt;
+Here are the participants:
+&lt;div data-bind=&quot;template: { name: &#39;person-template&#39;, foreach: people }&quot;&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/html&quot; id=&quot;person-template&quot;&gt;
+    &lt;h3 data-bind=&quot;text: name&quot;&gt;&lt;/h3&gt;
+    &lt;p&gt;Credits: &lt;span data-bind=&quot;text: credits&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/script&gt;
+
+ function MyViewModel() {
+     this.people = [
+         { name: &#39;Franklin&#39;, credits: 250 },
+         { name: &#39;Mario&#39;, credits: 5800 }
+     ]
+ }
+ ko.applyBindings(new MyViewModel());</code></pre>
+
+<p>This gives the same result as embedding an anonymous template directly inside the element to which you use <code>foreach</code>, i.e.:</p>
+
+<pre><code>&lt;div data-bind=&quot;foreach: people&quot;&gt;
+    &lt;h3 data-bind=&quot;text: name&quot;&gt;&lt;/h3&gt;
+    &lt;p&gt;Credits: &lt;span data-bind=&quot;text: credits&quot;&gt;&lt;/span&gt;&lt;/p&gt;  
+&lt;/div&gt;</code></pre>
+
+<h3 id='note_3_using_afterrender_afteradd_and_beforeremove'>Note 3: Using &#8220;afterRender&#8221;, &#8220;afterAdd&#8221;, and &#8220;beforeRemove&#8221;</h3>
+
+<p>Sometimes you might want to run custom post-processing logic on the DOM elements generated by your templates. For example, if you&#8217;re using a JavaScript widgets library such as jQuery UI, you might want to intercept your templates&#8217; output so that you can run jQuery UI commands on it to transform some of the rendered elements into date pickers, sliders, or anything else.</p>
+
+<p>Generally, the best way to perform such post-processing on DOM elements is to write a <a href='custom-bindings.html'>custom binding</a>, but if you really just want to access the raw DOM elements emitted by a template, you can use <code>afterRender</code>.</p>
+
+<p>Pass a function reference (either a function literal, or give the name of a function on your view model), and Knockout will invoke it immediately after rendering or re-rendering your template. If you&#8217;re using <code>foreach</code>, Knockout will invoke your <code>afterRender</code> callback for each item added to your observable array. For example,</p>
+
+<pre><code>&lt;div data-bind=&#39;template: { name: &quot;personTemplate&quot;, 
+                            data: myData,
+                            afterRender: myPostProcessingLogic }&#39;&gt; &lt;/div&gt;</code></pre>
+
+<p>&#8230; and define a corresponding function on your view model (i.e., the object that contains <code>myData</code>):</p>
+
+<pre><code>viewModel.myPostProcessingLogic = function(elements) {
+    // &quot;elements&quot; is an array of DOM nodes just rendered by the template
+    // You can add custom post-processing logic here
+}</code></pre>
+
+<p>If you are using <code>foreach</code> and only want to be notified about elements are specifically being added or are being removed, you can use <code>afterAdd</code> and <code>beforeRemove</code> instead. For details, see documentation for the <a href='foreach-binding.html'><code>foreach</code> binding</a>.</p>
+
+<h3 id='note_4_dynamically_choosing_which_template_is_used'>Note 4: Dynamically choosing which template is used</h3>
+
+<p>If you have multiple named templates, you can use a callback function to determine which one of them is used. This can be accomplished by supplying a function for the <code>name</code> option. If you&#8217;re using the <code>foreach</code> template mode, Knockout will evaluate the function for each item in your array, passing that item&#8217;s value as the only argument. Otherwise, the function will be given the <code>data</code> option&#8217;s value or fall back to providing your whole current model object.</p>
+
+<p>For example,</p>
+
+<pre><code>&lt;ul data-bind=&#39;template: { name: displayMode,
+                           foreach: employees }&#39;&gt; &lt;/ul&gt;
+
+var viewModel = {
+    employees: ko.observableArray([
+        { name: &quot;Kari&quot;, active: ko.observable(true) },
+        { name: &quot;Brynn&quot;, active: ko.observable(false) },
+        { name: &quot;Nora&quot;, active: ko.observable(false) }
+    ]),
+    displayMode: function(employee) {
+        return employee.active() ? &quot;active&quot; : &quot;inactive&quot;;  // Initially &quot;Kari&quot; uses the &quot;active&quot; template, while the others use &quot;inactive&quot;
+    }
+};
+
+// ... then later ...
+viewModel.employees()[1].active(true); // Now &quot;Brynn&quot; is also rendered using the &quot;active&quot; template.</code></pre>
+
+<p>If your function references observable values, then the binding will update whenever any of those values change. This will cause the data to be re-rendered using the appropriate template.</p>
+
+<h3 id='note_5_using_jquerytmpl_an_external_stringbased_template_engine'>Note 5: Using jQuery.tmpl, an external string-based template engine</h3>
+
+<p>In the vast majority of cases, Knockout&#8217;s native templating and the <code>foreach</code>, <code>if</code>, <code>with</code> and other control flow bindings will be all you need to construct an arbitrarily sophisticated UI. But in case you wish to integrate with an external templating library, such as the <a href='http://documentcloud.github.com/underscore/#template'>Underscore template engine</a> or <a href='http://api.jquery.com/jquery.tmpl/'>jquery.tmpl</a>, Knockout offers a way to do it.</p>
+
+<p>By default, Knockout comes with support for <a href='http://api.jquery.com/jquery.tmpl/'>jquery.tmpl</a>. To use it, you need to reference the following libraries, in this order:</p>
+
+<pre><code>&lt;!-- First jQuery --&gt;     &lt;script src=&quot;http://code.jquery.com/jquery-1.7.1.min.js&quot;&gt;&lt;/script&gt; 
+&lt;!-- Then jQuery.tmpl --&gt; &lt;script src=&quot;http://github.com/downloads/SteveSanderson/knockout/jquery.tmpl.js&quot;&gt;&lt;/script&gt;
+&lt;!-- Then Knockout --&gt;    &lt;script src=&quot;knockout-x.y.z.js&quot;&gt;&lt;/script&gt; </code></pre>
+
+<p>Then, you can use jQuery.tmpl syntax in your templates. For example,</p>
+
+<pre><code>&lt;h1&gt;People&lt;/h1&gt;
+&lt;div data-bind=&quot;template: &#39;peopleList&#39;&quot;&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/html&quot; id=&quot;peopleList&quot;&gt;
+    {{each people}}
+        &lt;p&gt;
+            &lt;b&gt;${name}&lt;/b&gt; is ${age} years old
+        &lt;/p&gt;
+    {{/each}}
+&lt;/script&gt;
+    
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var viewModel = {
+        people: ko.observableArray([
+            { name: &#39;Rod&#39;, age: 123 },
+            { name: &#39;Jane&#39;, age: 125 },
+        ])        
+    }
+    ko.applyBindings(viewModel);
+&lt;/script&gt;</code></pre>
+
+<p>This works because <code>{{each ...}}</code> and <code>${ ... }</code> are jQuery.tmpl syntaxes. What&#8217;s more, it&#8217;s trivial to nest templates: because you can use data-bind attributes from inside a template, you can simply put a <code>data-bind=&quot;template: ...&quot;</code> inside a template to render a nested one.</p>
+
+<p>Please note that, as of December 2011, jQuery.tmpl is no longer under active development. In due course, it will be succeded by <a href='https://github.com/BorisMoore/jsrender'>JsRender</a>, which is currently not yet in beta.</p>
+
+<h3 id='note_6_using_the_underscorejs_template_engine'>Note 6: Using the Underscore.js template engine</h3>
+
+<p>The <a href='http://documentcloud.github.com/underscore/#template'>Underscore.js template engine</a> by default uses ERB-style delimiters (<code>&lt;%= ... %&gt;</code>). Here&#8217;s how the preceding example&#8217;s template might look with Underscore:</p>
+
+<pre><code>&lt;script type=&quot;text/html&quot; id=&quot;peopleList&quot;&gt;
+    &lt;% _.each(people(), function(person) { %&gt;
+        &lt;li&gt;
+            &lt;b&gt;&lt;%= person.name %&gt;&lt;/b&gt; is &lt;%= person.age %&gt; years old
+        &lt;/li&gt;
+    &lt;% }) %&gt;
+&lt;/script&gt;</code></pre>
+
+<p>Here&#8217;s <a href='http://jsfiddle.net/6pStz/'>a simple implementation of integrating Underscore templates with Knockout</a>. The integration code is just 16 lines long, but it&#8217;s enough to support Knockout <code>data-bind</code> attributes (and hence nested templates) and Knockout binding context variables (<code>$parent</code>, <code>$root</code>, etc.) too.</p>
+
+<p>If you&#8217;re not a fan of the <code>&lt;%= ... %&gt;</code> delimiters, you can configure the Underscore template engine to use any other delimiter characters of your choice.</p>
+
+<h3 id='dependencies'>Dependencies</h3>
+
+<ul>
+<li><strong>Native templating</strong> does not require any library other than Knockout itself</li>
+
+<li><strong>String-based templating</strong> works only once you&#8217;ve referenced a suitable template engine, such as jQuery.tmpl or the Underscore template engine.</li>
+</ul>    
+		    </div>
+		    
+		    <div class="clear"></div>
+		</div>
+	</div>	
+</div>
+            <div class="clear"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+        </div>
+        
+    <div id="page-footer">(c) knockoutjs.com</div>
+
+    </body>
+</html>

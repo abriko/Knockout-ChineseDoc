@@ -1,0 +1,338 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Knockout : 监控数组</title> <link href="../css/tripoli.simple.css" type="text/css" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/smallScreen.css" media="only screen and (max-device-width: 800px)" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="../css/tripoli.simple.ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="../css/ie6ie7.css" /><![endif]-->
+        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../css/ie6.css" /><![endif]-->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/release.js"></script>
+		<!--[if lt IE 7]>
+<script defer type="text/javascript" src="../js/ie6pngfix.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css"/>  
+
+<script type="text/javascript">
+if (!window.jQuery)document.write('<script type="text/javascript" src="../js/jquery-1.7.2.min.js"><' + '/script>');
+    $(function() {
+		$('.cn').hover(function(){
+				var t = $(this);
+				t.next('.en').css('top',t.offset().top + t.height() + 10).css('left',t.offset().left).css('width',t.width()).fadeIn();
+			},function(){
+				$(this).next('.en').fadeOut();
+			});
+        // Fancy fonts
+        Cufon.replace('.titillium');
+        Cufon.replace('.engraved', {
+            textShadow: 'rgba(253, 224, 217, 0.45) 1.2px 1px'	
+        });
+        
+        // Syntax highlighting
+        $("pre > code").each(function() {
+            var codeText = $(this).text();
+            $(this).parent().text(codeText).addClass("brush:js");
+        });
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+        
+        // Highlight current top menu item
+        var desiredMenuItem = '' || 'documentation';
+        $(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+        
+        // Highlight current left-hand-nav menu item
+        var urlFilename = location.href.match(/\/([^\/]+)$/);
+        if (urlFilename) {
+            $(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])").addClass("active");
+        }
+    });
+</script> 
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="vspace"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+            <div class="vspace"></div>
+            <div>	
+	<div class="leftCol">		
+		<div class="leftColBackground">&nbsp;</div>
+		<div class="leftColContents">
+			<h1>入门</h1>
+
+<ol>
+    <li><a href="introduction.html">KO工作原理及带来的好处</a></li>
+    <li><a href="installation.html">下载安装</a></li>
+</ol>
+
+<h1>监控属性</h1>
+
+<ol>
+    <li><a href="observables.html">创建带有监控属性的 <em>view model</em></a></li>
+    <li><a href="computedObservables.html">使用<em>自动计算属性(Computed Observables)</em></a></li>
+    <li><a href="observableArrays.html">使用<em>监控数组(Observable Arrays)</em></a></li>	
+</ol>
+
+<h1>使用内置绑定</h1>
+
+<h2>控制文本和外观</h2>
+<ol>
+<li><a href="visible-binding.html"><code>visible</code> 绑定</a><a class="en" href="visible-binding.html">The <code>visible</code> binding</a></li>
+<li><a href="text-binding.html"><code>text</code> 绑定</a></li>
+<li><a href="html-binding.html"><code>html</code> 绑定</a></li>
+<li><a href="css-binding.html"><code>css</code> 绑定</a></li>
+<li><a href="style-binding.html"><code>style</code> 绑定</a></li>
+<li><a href="attr-binding.html"><code>attr</code> 绑定</a></li>
+</ol>
+
+<h2>绑定逻辑控制</h2>
+<ol>
+<li><a href="foreach-binding.html"><code>foreach</code> 绑定</a></li>
+<li><a href="if-binding.html"><code>if</code> 绑定</a></li>
+<li><a href="ifnot-binding.html"><code>ifnot</code> 绑定</a></li>
+<li><a href="with-binding.html"><code>with</code> 绑定</a></li>
+</ol>
+
+<h2>处理表单属性</h2>
+<ol>
+    <li><a href="click-binding.html"><code>click</code> 绑定</a></li>
+    <li><a href="event-binding.html"><code>event</code> 绑定</a></li>
+    <li><a href="submit-binding.html"><code>submit</code> 绑定</a></li>
+    <li><a href="enable-binding.html"><code>enable</code> 绑定</a></li>
+    <li><a href="disable-binding.html"><code>disable</code> 绑定</a></li>
+    <li><a href="value-binding.html"><code>value</code> 绑定</a></li>
+    <li><a href="hasfocus-binding.html"><code>hasfocus</code> 绑定</a></li>
+    <li><a href="checked-binding.html"><code>checked</code> 绑定</a></li>
+    <li><a href="options-binding.html"><code>options</code> 绑定</a></li>
+    <li><a href="selectedOptions-binding.html"><code>selectedOptions</code> 绑定</a></li>    
+    <li><a href="uniqueName-binding.html"><code>uniqueName</code> 绑定</a></li>		
+</ol>
+
+<h2>解析模板</h2>
+<ol>
+    <li><a href="template-binding.html"><code>template</code> 绑定</a></li>
+</ol>
+
+<h2>高级应用</h2>
+<ol>
+    <li><a href="custom-bindings.html">自定义绑定</a></li>
+    <li><a href="json-data.html">读取和保存JSON数据</a></li>
+    <li><a href="extenders.html">扩展observables监控</a></li>
+    <li><a href="throttle-extender.html">The <code>throttle</code> extender</a></li>
+    <li><a href="unobtrusive-event-handling.html">非显式事件绑定</a></li>
+    <li><a href="fn.html"><code>fn</code> 自定义函数</a></li>
+</ol>
+
+<h2>插件</h2>
+<ol>
+    <li><a href="plugins-mapping.html"><code>mapping</code> 插件</a></li>
+</ol>
+
+<h1>更多信息</h1>
+<ol>
+    <li><a href="browser-support.html">浏览支持</a></li>
+    <li><a href="http://groups.google.com/group/knockoutjs">取得帮助</a></li>
+    <li><a href="links.html">在线例子</a></li>
+</ol>
+		</div>		
+	</div>
+	<div class="rightCol">
+		<div class="documentation sticker">
+		    <div class="content">
+		    	<h1>监控数组(Observable Arrays)</h1>	
+                <p class="cn">如果你要探测和响应一个对象的变化，你应该用<a href='observables.html'>observables</a>。如果你需要探测和响应一个<em>集合对象</em>的变化，你应该用 <code>observableArray</code> 。在很多场景下，它都非常有用，比如你要在UI上需要显示/编辑的一个列表数据集合，然后对集合进行添加和删除。</p>
+		    	<p class="en">If you want to detect and respond to changes on one object, you&#8217;d use <a href='observables.html'>observables</a>. If you want to detect and respond to changes of a <em>collection of things</em>, use an <code>observableArray</code>. This is useful in many scenarios where you&#8217;re displaying or editing multiple values and need repeated sections of UI to appear and disappear as items are added and removed.</p>
+
+<h3 id='example'>例子</h3>
+
+<pre><code>var myObservableArray = ko.observableArray();    // Initially an empty array
+myObservableArray.push(&#39;Some value&#39;);            // Adds the value and notifies observers</code></pre>
+
+<p class="cn">请参阅如何使用 <code>observableArray</code> 绑定到UI并让用户修改他们<a href='examples/simpleList.html'>the simple list example</a>.</p>
+<p class="en">To see how you can bind the <code>observableArray</code> to a UI and let the user modify it, see <a href='examples/simpleList.html'>the simple list example</a>.</p>
+
+<h3 id='key_point_an_observablearray_tracks_which_objects_are_in_the_array_not_the_state_of_those_objects'>关键点：监控数组跟踪的是数组<em>里</em>的对象，而<em>不是</em>这些对象自身的状态。</h3>
+
+<p class="cn">简单说，将一对象放在 <code>observableArray</code> 里不会使这个对象本身的属性变化可监控的。当然你自己也可以声明这个对象的属性为observable的，但它就成了一个依赖监控对象了。一个 <code>observableArray</code> 仅仅监控他拥有的对象，并在这些对象添加或者删除的时候发出通知。</p>
+<p class="en">Simply putting an object into an <code>observableArray</code> doesn&#8217;t make all of that object&#8217;s properties themselves observable. Of course, you can make those properties observable if you wish, but that&#8217;s an independent choice. An <code>observableArray</code> just tracks which objects it holds, and notifies listeners when objects are added or removed.</p>
+
+<h2 id='prepopulating_an_observablearray'>预加载一个监控数组(observableArray)</h2>
+
+<p class="cn">如果你想让你的监控数组在开始的时候就有一些<strong>初始值</strong>，那么在声明的时候，你可以在构造器里加入这些初始对象。例如：</p>
+<p class="en">If you want your observable array <strong>not</strong> to start empty, but to contain some initial items, pass those items as an array to the constructor. For example,</p>
+
+<pre><code>// This observable array initially contains three objects
+var anotherObservableArray = ko.observableArray([
+	{ name: &quot;Bungle&quot;, type: &quot;Bear&quot; },
+	{ name: &quot;George&quot;, type: &quot;Hippo&quot; },
+	{ name: &quot;Zippy&quot;, type: &quot;Unknown&quot; }
+]);</code></pre>
+
+<h2 id='reading_information_from_an_observablearray'>从监控数组(observableArray)里读取信息</h2>
+
+<p class="cn">一个 <code>observableArray</code> 其实就是一个 <a href='observables.html'>observable的监控对象</a>，只不过他的值是一个数组 (<code>observableArray</code>还加了很多其他特性，稍后介绍)。所以你可以像获取普通的 <code>observableArray</code> 的值一样，只需要调用无参函数就可以获取自身的值了。 例如，你可以像下面这样获取它的值：</p>
+<p class="en">Behind the scenes, an <code>observableArray</code> is actually an <a href='observables.html'>observable</a> whose value is an array (plus, <code>observableArray</code> adds some additional features I&#8217;ll describe in a moment). So, you can get the underlying JavaScript array by invoking the <code>observableArray</code> as a function with no parameters, just like any other observable. Then you can read information from that underlying array. For example,</p>
+
+<pre><code>alert(&#39;The length of the array is &#39; + myObservableArray().length);
+alert(&#39;The first element is &#39; + myObservableArray()[0]);</code></pre>
+
+<p class="cn">理论上你可以使用任何原生的JavaScript数组函数来操作这些数组，但是KO提供了更好的功能等价函数<code>observableArray</code>，他们非常有用是因为：</p>
+<p class="en">Technically you can use any of the native JavaScript array functions to operate on that underlying array, but normally there&#8217;s a better alternative. KO&#8217;s <code>observableArray</code> has equivalent functions of its own, and they&#8217;re more useful because:</p>
+
+<ol>
+<li class="cn">兼容所有浏览器。（例如 <code>indexOf</code> 不能在IE8和早期版本上使用，但KO自己的 <code>indexOf</code> 可以在所有浏览器上使用）</li>
+<li class="en">They work on all targeted browsers. (For example, the native JavaScript <code>indexOf</code> function doesn&#8217;t work on IE 8 or earlier, but KO&#8217;s <code>indexOf</code> works everywhere.)</li>
+
+<li class="cn">在数组操作函数方面（例如 <code>push</code> and <code>splice</code>），KO自己的方式可以自动触发依赖跟踪，并且通知所有的订阅者它的变化，然后让UI界面也相应的自动更新。</li>
+<li class="en">For functions that modify the contents of the array, such as <code>push</code> and <code>splice</code>, KO&#8217;s methods automatically trigger the dependency tracking mechanism so that all registered listeners are notified of the change, and your UI is automatically updated.</li>
+
+<li class="cn">语法更方便，调用KO的 <code>push</code> 方法，只需要这样写： <code>myObservableArray.push(...)</code>。 比如原生数组的 <code>myObservableArray().push(...)</code>好用多了。</li>
+<li class="en">The syntax is more convenient. To call KO&#8217;s <code>push</code> method, just write <code>myObservableArray.push(...)</code>. This is slightly nicer than calling the underlying array&#8217;s <code>push</code> method by writing <code>myObservableArray().push(...)</code>.</li>
+</ol>
+
+<p class="cn">下面讲解的均是 <code>observableArray</code> 的读取和写入的相关函数。</p>
+<p class="en">The rest of this page describes <code>observableArray</code>&#8217;s functions for reading and writing array information.</p>
+
+<h3 id='indexof'>indexOf</h3>
+
+<p class="cn"><code>indexOf</code> 函数返回的是第一个等于你参数数组项的索引。例如： <code>myObservableArray.indexOf(&#39;Blah&#39;)</code> 将返回以0为第一个索引的第一个等于 <code>Blah</code>的数组项的索引。如果没有找到相等的，将返回 <code>-1</code>。</p>
+<p class="en">The <code>indexOf</code> function returns the index of the first array item that equals your parameter. For example, <code>myObservableArray.indexOf(&#39;Blah&#39;)</code> will return the zero-based index of the first array entry that equals <code>Blah</code>, or the value <code>-1</code> if no matching value was found.</p>
+
+<h3 id='slice'>slice</h3>
+
+<p class="cn"><code>slice</code> 函数是 <code>observableArray</code> 相对于JavaScript 原生函数 <code>slice</code> 的等价函数（返回给定的从开始索引到结束索引之间所有的对象集合）。 调用 <code>myObservableArray.slice(...)</code> 等价于调用JavaScript原生函数 <code>myObservableArray().slice(...)</code>）。</p>
+<p class="en">The <code>slice</code> function is the <code>observableArray</code> equivalent of the native JavaScript <code>slice</code> function (i.e., it returns the entries of your array from a given start index up to a given end index). Calling <code>myObservableArray.slice(...)</code> is equivalent to calling the same method on the underlying array (i.e., <code>myObservableArray().slice(...)</code>).</p>
+
+<h2 id='manipulating_an_observablearray'>操作observableArray</h2>
+
+<p class="cn"><code>observableArray</code> 展现的是数组对象相似的函数并通知订阅者的功能。</p>
+<p class="en"><code>observableArray</code> exposes a familiar set of functions for modifying the contents of the array and notifying listeners.</p>
+
+<h3 id='pop_push_shift_unshift_reverse_sort_splice'>pop, push, shift, unshift, reverse, sort, splice</h3>
+
+<p class="cn">所有这些函数都是和JavaScript数组原生函数等价的，唯一不同的数组改变可以通知订阅者：</p>
+<p class="en">All of these functions are equivalent to running the native JavaScript array functions on the underlying array, and then notifying listeners about the change:</p>
+
+<ul>
+<li>
+<p class="cn"><code>myObservableArray.push(&#39;Some new value&#39;)</code> 在数组末尾添加一个新项</p>
+<p class="en"><code>myObservableArray.push(&#39;Some new value&#39;)</code> adds a new item to the end of array</p>
+</li>
+
+<li>
+<p class="cn"><code>myObservableArray.pop()</code> 删除数组最后一个项并返回该项</p>
+<p class="en"><code>myObservableArray.pop()</code> removes the last value from the array and returns it</p>
+</li>
+
+<li>
+<p class="cn"><code>myObservableArray.unshift(&#39;Some new value&#39;)</code> 在数组头部添加一个项</p>
+<p class="en"><code>myObservableArray.unshift(&#39;Some new value&#39;)</code> inserts a new item at the beginning of the array</p>
+</li>
+
+<li>
+<p class="cn"><code>myObservableArray.shift()</code> 删除数组头部第一项并返回该项</p>
+<p class="en"><code>myObservableArray.shift()</code> removes the first value from the array and returns it</p>
+</li>
+
+<li>
+<p><code>myObservableArray.reverse()</code> 翻转整个数组的顺序</p>
+<p><code>myObservableArray.reverse()</code> reverses the order of the array</p>
+</li>
+
+<li>
+<p><code>myObservableArray.sort()</code> 给数组排序</p>
+<p><code>myObservableArray.sort()</code> sorts the array contents.</p>
+</li>
+
+<ul>
+<li class="cn">默认情况下，是按照字符排序（如果是字符）或者数字排序（如果是数字）。</li>
+<li class="en">By default, it sorts alphabetically (for strings) or numerically (for numbers).</li>
+
+<li class="cn">你可以排序传入一个排序函数进行排序，该排序函数需要接受2个参数（代表该数组里需要比较的项），如果第一个项小于第二个项，返回-1，大于则返回1，等于返回0。例如：用lastname给person排序，你可以这样写： <code>myObservableArray.sort(function(left, right) { return left.lastName == right.lastName ? 0 : (left.lastName &lt; right.lastName ? -1 : 1) })</code></li>
+<li class="en">Optionally, you can pass a function to control how the array should be sorted. Your function should accept any two objects from the array and return a negative value if the first argument is smaller, a positive value is the second is smaller, or zero to treat them as equal. For example, to sort an array of &#8216;person&#8217; objects by last name, you could write <code>myObservableArray.sort(function(left, right) { return left.lastName == right.lastName ? 0 : (left.lastName &lt; right.lastName ? -1 : 1) })</code></li>
+</ul>
+</li>
+
+<li>
+<p class="cn"><code>myObservableArray.splice()</code> 删除指定开始索引和指定数目的数组对象元素。例如 <code>myObservableArray.splice(1, 3)</code> 从索引1开始删除3个元素（第2,3,4个元素）然后将这些元素作为一个数组对象返回。</p>
+<p class="en"><code>myObservableArray.splice()</code> removes and returns a given number of elements starting from a given index. For example, <code>myObservableArray.splice(1, 3)</code> removes three elements starting from index position 1 (i.e., the 2nd, 3rd, and 4th elements) and returns them as an array.</p>
+</li>
+</ul>
+
+<p>更多observableArray 函数的信息，请参考等价的 <a href='http://www.w3schools.com/jsref/jsref_obj_array.asp'>standard JavaScript array functions</a>。</p>
+
+<h3 class="cn" id='remove_and_removeall'>remove 和 removeAll</h3>
+<h3 class="en" id='remove_and_removeall'>remove and removeAll</h3>
+
+<p class="cn"><code>observableArray</code> 添加了一些JavaScript数组默认没有但非常有用的函数：</p>
+<p class="en"><code>observableArray</code> adds some more useful methods that aren&#8217;t found on JavaScript arrays by default:</p>
+
+<ul>
+<li class="cn"><code>myObservableArray.remove(someItem)</code> 删除所有等于 <code>someItem</code>的元素并将被删除元素作为一个数组返回</li>
+<li class="en"><code>myObservableArray.remove(someItem)</code> removes all values that equal <code>someItem</code> and returns them as an array</li>
+
+<li class="cn"><code>myObservableArray.remove(function(item) { return item.age &lt; 18 })</code> 删除所有 <code>age</code> 属性小于18的元素并将被删除元素作为一个数组返回</li>
+<li class="en"><code>myObservableArray.remove(function(item) { return item.age &lt; 18 })</code> removes all values whose <code>age</code> property is less than 18, and returns them as an array</li>
+
+<li class="cn"><code>myObservableArray.removeAll([&#39;Chad&#39;, 132, undefined])</code> 删除所有等于 <code>&#39;Chad&#39;</code>, <code>123</code>, or <code>undefined</code> and returns them as an array</li>
+<li class="en"><code>myObservableArray.removeAll([&#39;Chad&#39;, 132, undefined])</code> removes all values that equal <code>&#39;Chad&#39;</code>, <code>123</code>, or <code>undefined</code> 的元素并将被删除元素作为一个数组返回</li>
+</ul>
+
+<h3 class="cn" id='destroy_and_destroyall_note_usually_relevant_to_ruby_on_rails_developers_only'>destroy和destroyAll（注：通常只和Ruby on Rails开发者有关)</h3>
+<h3 class="en" id='destroy_and_destroyall_note_usually_relevant_to_ruby_on_rails_developers_only'>destroy and destroyAll (Note: Usually relevant to Ruby on Rails developers only)</h3>
+
+<p class="cn"><code>destroy</code> 和 <code>destroyAll</code> 函数是为Ruby on Rails开发者方便使用为开发的：</p>
+<p class="en">The <code>destroy</code> and <code>destroyAll</code> functions are mainly intended as a convenience for developers using Ruby on Rails:</p>
+
+<ul>
+<li class="cn"><code>myObservableArray.destroy(someItem)</code> 找出所有等 <code>someItem</code> 的元素并给他们添加一个属性 <code>_destroy</code>，并赋值为<code>true</code></li>
+<li class="en"><code>myObservableArray.destroy(someItem)</code> finds any objects in the array that equal <code>someItem</code> and gives them a special property called <code>_destroy</code> with value <code>true</code></li>
+
+<li class="cn"><code>myObservableArray.destroy(function(someItem) { return someItem.age &lt; 18 })</code> 找出所有 <code>age</code> 属性小于18的元素并给他们添加一个属性 <code>_destroy</code> ，并赋值为 <code>true</code></li>
+<li class="en"><code>myObservableArray.destroy(function(someItem) { return someItem.age &lt; 18 })</code> finds any objects in the array whose <code>age</code> property is less than 18, and gives those objects a special property called <code>_destroy</code> with value <code>true</code></li>
+
+<li class="cn"><code>myObservableArray.destroyAll([&#39;Chad&#39;, 132, undefined])</code> 找出所有等于 <code>&#39;Chad&#39;</code>, <code>123</code>, or <code>undefined</code> 的元素并给他们添加一个属性 <code>_destroy</code> ，并赋值为 <code>true</code></li>
+<li class="en"><code>myObservableArray.destroyAll([&#39;Chad&#39;, 132, undefined])</code> finds any objects in the array that equal <code>&#39;Chad&#39;</code>, <code>123</code>, or <code>undefined</code> and gives them a special property called <code>_destroy</code> with value <code>true</code></li>
+</ul>
+
+<p class="cn">那么， <code>_destroy</code> 是做什么用的？正如我提到的，这只是为Rails 开发者准备的。在Rails 开发过程中，如果你传入一个JSON对象，Rails 框架会自动转换成ActiveRecord对象并且保存到数据库。Rails 框架知道哪些对象以及在数据库中存在，哪些需要添加或更新， 标记 <code>_destroy</code> 为 <code>true</code> 就是告诉框架删除这条记录。</p>
+<p class="en">So, what&#8217;s this <code>_destroy</code> thing all about? As I mentioned, it&#8217;s only really interesting to Rails developers. The convention in Rails is that, when you pass into an action a JSON object graph, the framework can automatically convert it to an ActiveRecord object graph and then save it to your database. It knows which of the objects are already in your database, and issues the correct INSERT or UPDATE statements. To tell the framework to DELETE a record, you just mark it with <code>_destroy</code> set to <code>true</code>.</p>
+
+<p class="cn">注意的是：在KO render一个 <code>foreach</code> 模板的时候，会自动隐藏带有 <code>_destroy</code> 属性并且值为 <code>true</code>的元素。所以如果你的“delete”按钮调用 <code>destroy(someItem)</code> 方法的话，UI界面上的相对应的元素将自动隐藏，然后等你提交这个JSON对象到Rails上的时候，这个元素项将从数据库删除（同时其它的元素项将正常的插入或者更新）。</p>    
+<p class="en">Note that when KO renders a <code>foreach</code> binding, it automatically hides any objects marked with <code>_destroy</code> equal to <code>true</code>. So, you can have some kind of &#8220;delete&#8221; button that invokes the <code>destroy(someItem)</code> method on the array, and this will immediately cause the specified item to vanish from the visible UI. Later, when you submit the JSON object graph to Rails, that item will also be deleted from the database (while the other array items will be inserted or updated as usual).</p>    
+		    </div>
+		    
+		    <div class="clear"></div>
+		</div>
+	</div>	
+</div>
+            <div class="clear"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+        </div>
+        
+    <div id="page-footer">(c) knockoutjs.com</div>
+
+    </body>
+</html>

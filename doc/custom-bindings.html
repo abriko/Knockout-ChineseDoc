@@ -1,0 +1,352 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Knockout : 创建自定义绑定创建自定义绑定</title>
+        <link href="css/tripoli.simple.css" type="text/css" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/smallScreen.css" media="only screen and (max-device-width: 800px)" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="../css/tripoli.simple.ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="../css/ie6ie7.css" /><![endif]-->
+        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../css/ie6.css" /><![endif]-->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/release.js"></script>
+		<!--[if lt IE 7]>
+<script defer type="text/javascript" src="../js/ie6pngfix.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css"/>  
+
+<script type="text/javascript">
+if (!window.jQuery)document.write('<script type="text/javascript" src="../js/jquery-1.7.2.min.js"><' + '/script>');
+    $(function() {
+		$('.cn').hover(function(){
+				var t = $(this);
+				t.next('.en').css('top',t.offset().top + t.height() + 10).css('left',t.offset().left).css('width',t.width()).fadeIn();
+			},function(){
+				$(this).next('.en').fadeOut();
+			});
+        // Fancy fonts
+        Cufon.replace('.titillium');
+        Cufon.replace('.engraved', {
+            textShadow: 'rgba(253, 224, 217, 0.45) 1.2px 1px'	
+        });
+        
+        // Syntax highlighting
+        $("pre > code").each(function() {
+            var codeText = $(this).text();
+            $(this).parent().text(codeText).addClass("brush:js");
+        });
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+        
+        // Highlight current top menu item
+        var desiredMenuItem = '' || 'documentation';
+        $(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+        
+        // Highlight current left-hand-nav menu item
+        var urlFilename = location.href.match(/\/([^\/]+)$/);
+        if (urlFilename) {
+            $(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])").addClass("active");
+        }
+    });
+</script> 
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="vspace"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+            <div class="vspace"></div>
+            <div>	
+	<div class="leftCol">		
+		<div class="leftColBackground">&nbsp;</div>
+		<div class="leftColContents">
+			<h1>入门</h1>
+
+<ol>
+    <li><a href="introduction.html">KO工作原理及带来的好处</a></li>
+    <li><a href="installation.html">下载安装</a></li>
+</ol>
+
+<h1>监控属性</h1>
+
+<ol>
+    <li><a href="observables.html">创建带有监控属性的 <em>view model</em></a></li>
+    <li><a href="computedObservables.html">使用<em>自动计算属性(Computed Observables)</em></a></li>
+    <li><a href="observableArrays.html">使用<em>监控数组(Observable Arrays)</em></a></li>	
+</ol>
+
+<h1>使用内置绑定</h1>
+
+<h2>控制文本和外观</h2>
+<ol>
+<li><a href="visible-binding.html"><code>visible</code> 绑定</a><a class="en" href="visible-binding.html">The <code>visible</code> binding</a></li>
+<li><a href="text-binding.html"><code>text</code> 绑定</a></li>
+<li><a href="html-binding.html"><code>html</code> 绑定</a></li>
+<li><a href="css-binding.html"><code>css</code> 绑定</a></li>
+<li><a href="style-binding.html"><code>style</code> 绑定</a></li>
+<li><a href="attr-binding.html"><code>attr</code> 绑定</a></li>
+</ol>
+
+<h2>绑定逻辑控制</h2>
+<ol>
+<li><a href="foreach-binding.html"><code>foreach</code> 绑定</a></li>
+<li><a href="if-binding.html"><code>if</code> 绑定</a></li>
+<li><a href="ifnot-binding.html"><code>ifnot</code> 绑定</a></li>
+<li><a href="with-binding.html"><code>with</code> 绑定</a></li>
+</ol>
+
+<h2>处理表单属性</h2>
+<ol>
+    <li><a href="click-binding.html"><code>click</code> 绑定</a></li>
+    <li><a href="event-binding.html"><code>event</code> 绑定</a></li>
+    <li><a href="submit-binding.html"><code>submit</code> 绑定</a></li>
+    <li><a href="enable-binding.html"><code>enable</code> 绑定</a></li>
+    <li><a href="disable-binding.html"><code>disable</code> 绑定</a></li>
+    <li><a href="value-binding.html"><code>value</code> 绑定</a></li>
+    <li><a href="hasfocus-binding.html"><code>hasfocus</code> 绑定</a></li>
+    <li><a href="checked-binding.html"><code>checked</code> 绑定</a></li>
+    <li><a href="options-binding.html"><code>options</code> 绑定</a></li>
+    <li><a href="selectedOptions-binding.html"><code>selectedOptions</code> 绑定</a></li>    
+    <li><a href="uniqueName-binding.html"><code>uniqueName</code> 绑定</a></li>		
+</ol>
+
+<h2>解析模板</h2>
+<ol>
+    <li><a href="template-binding.html"><code>template</code> 绑定</a></li>
+</ol>
+
+<h2>高级应用</h2>
+<ol>
+    <li><a href="custom-bindings.html">自定义绑定</a></li>
+    <li><a href="json-data.html">读取和保存JSON数据</a></li>
+    <li><a href="extenders.html">扩展observables监控</a></li>
+    <li><a href="throttle-extender.html">The <code>throttle</code> extender</a></li>
+    <li><a href="unobtrusive-event-handling.html">非显式事件绑定</a></li>
+    <li><a href="fn.html"><code>fn</code> 自定义函数</a></li>
+</ol>
+
+<h2>插件</h2>
+<ol>
+    <li><a href="plugins-mapping.html"><code>mapping</code> 插件</a></li>
+</ol>
+
+<h1>更多信息</h1>
+<ol>
+    <li><a href="browser-support.html">浏览支持</a></li>
+    <li><a href="http://groups.google.com/group/knockoutjs">取得帮助</a></li>
+    <li><a href="links.html">在线例子</a></li>
+</ol>
+		</div>		
+	</div>
+	<div class="rightCol">
+		<div class="documentation sticker">
+		    <div class="content">
+		    	<h1>创建自定义绑定创建自定义绑定</h1>	
+		    	<p class="cn">你可以创建自己的自定义绑定 – 没有必要非要使用内嵌的绑定（像 <code>click</code>，<code>value</code>, 等）。你可以你封装复杂的逻辑或行为，自定义很容易使用和重用的绑定。</p>
+                <p class="en">You&#8217;re not limited to using the built-in bindings like <code>click</code>, <code>value</code>, and so on &#8212; you can create your own ones. This is how to control how observables interact with DOM elements, and gives you a lot of flexibility to encapsulate sophisticated behaviors in an easy-to-reuse way.</p>
+
+<p>例如，你可以在form表单里自定义像<a href='examples/grid.html'>grid</a>等这样的绑定。</p>
+
+<p class="cn"><strong>重要</strong>：以下文档只应用在Knockout 1.1.1和更高版本，Knockout 1.1.0和以前的版本在注册API上是不同的。</p>
+<p class="en"><strong>Important</strong>: The following documentation applies to Knockout 1.1.1 and later. The API for registering bindings was different in Knockout 1.1.0 and earlier.</p>
+
+<h3 id='registering_your_binding'>注册你的绑定注册你的绑定</h3>
+
+<p class="cn">添加子属性到 <code>ko.bindingHandlers</code>来注册你的绑定：</p>
+<p class="en">To register a binding, add it as a subproperty of <code>ko.bindingHandlers</code>:</p>
+
+<pre><code>ko.bindingHandlers.yourBindingName = {
+    init: function(element, valueAccessor, allBindingsAccessor, viewModel) {
+        // This will be called when the binding is first applied to an element
+        // Set up any initial state, event handlers, etc. here
+    },
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel) {
+        // This will be called once when the binding is first applied to an element,
+        // and again whenever the associated observable changes value.
+        // Update the DOM element based on the supplied values here.
+    }
+};</code></pre>
+
+<p class="cn">&#8230; 然后就可以在任何DOM元素上使用了：</p>
+<p class="en">&#8230; and then you can use it on any number of DOM elements:</p>
+
+<pre><code>&lt;div data-bind=&quot;yourBindingName: someValue&quot;&gt; &lt;/div&gt;</code></pre>
+
+<p>：你实际上没必要把：你实际上没必要把 <code>init</code> <em>和</em> <code>update</code> 这两个callbacks都定义，你可以只定义其中的任意一个。</p>
+<p>Note: you don&#8217;t actually have to provide both <code>init</code> <em>and</em> <code>update</code> callbacks &#8212; you can just provide one or the other if that&#8217;s all you need.</p>
+
+<h3 id='the_update_callback'>&#8220;update&#8221; 回调</h3>
+
+<p class="cn">当管理的observable改变的时候，KO会调用你的 <code>update</code> callback函数，然后传递以下参数：</p>
+<p class="en">Whenever the associated observable changes, KO will call your <code>update</code> callback, passing the following parameters:</p>
+
+
+<ul class="cn">
+<li><code>element</code> &#8212; 使用这个绑定的DOM元素</li>
+
+<li><code>valueAccessor</code> &#8212; JavaScript函数，通过 <code>valueAccessor()</code>) 可以得到应用到这个绑定的model上的当前属性值。</li>
+
+<li><code>allBindingsAccessor</code> &#8212; JavaScript函数，通过allBindingsAccessor ()得到这个元素上所有model的属性值。</li>
+
+<li><code>viewModel</code> &#8212; 传递给ko.applyBindings使用的 view model参数，如果是模板内部的话，那这个参数就是传递给该模板的数据。</li>
+</ul>
+<ul class="en">
+<li><code>element</code> &#8212; The DOM element involved in this binding</li>
+
+<li><code>valueAccessor</code> &#8212; A JavaScript function that you can call to get the current model property that is involved in this binding. Call this without passing any parameters (i.e., call <code>valueAccessor()</code>) to get the current model property value.</li>
+
+<li><code>allBindingsAccessor</code> &#8212; A JavaScript function that you can call to get <em>all</em> the model properties bound to this DOM element. Like <code>valueAccessor</code>, call it without any parameters to get the current bound model properties.</li>
+
+<li><code>viewModel</code> &#8212; The view model object that was passed to <code>ko.applyBindings</code>. Inside a nested binding context, this parameter will be set to the current data item (e.g., inside a <code>with: person</code> binding, <code>viewModel</code> will be set to <code>person</code>).</li>
+</ul>
+
+<p class="cn">例如，你可能想通过 例如，你可能想通过 <code>visible</code> 绑定来控制一个元素的可见性，但是你想让该元素在隐藏或者显示的时候加入动画效果。那你可以自定义自己的绑定来调用jQuery的 <code>slideUp</code>/<code>slideDown</code> 函数：</p>
+<p class="en">For example, you might have been controlling an element&#8217;s visibility using the <code>visible</code> binding, but now you want to go a step further and animate the transition. You want elements to slide into and out of existence according to the value of an observable. You can do this by writing a custom binding that calls jQuery&#8217;s <code>slideUp</code>/<code>slideDown</code> functions:</p>
+
+<pre><code>ko.bindingHandlers.slideVisible = {
+    update: function(element, valueAccessor, allBindingsAccessor) {
+        // First get the latest data that we&#39;re bound to
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        
+        // Next, whether or not the supplied model property is observable, get its current value
+        var valueUnwrapped = ko.utils.unwrapObservable(value); 
+        
+        // Grab some more data from another binding property
+        var duration = allBindings.slideDuration || 400; // 400ms is default duration unless otherwise specified
+        
+        // Now manipulate the DOM element
+        if (valueUnwrapped == true) 
+            $(element).slideDown(duration); // Make the element visible
+        else 
+            $(element).slideUp(duration);   // Make the element invisible
+    }
+};</code></pre>
+
+<p>然后你可以像这样使用你的绑定：</p>
+
+<pre><code>&lt;div data-bind=&quot;slideVisible: giftWrap, slideDuration:600&quot;&gt;You have selected the option&lt;/div&gt;
+&lt;label&gt;&lt;input type=&quot;checkbox&quot; data-bind=&quot;checked: giftWrap&quot; /&gt; Gift wrap&lt;/label&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var viewModel = {
+        giftWrap: ko.observable(true)
+    };
+    ko.applyBindings(viewModel);
+&lt;/script&gt;</code></pre>
+
+<p class="cn">当然，看来可能代码很多，但是一旦你创建了自定义绑定，你就可以在很多地方重用它。</p>
+<p class="en">Of course, this is a lot of code at first glance, but once you&#8217;ve created your custom bindings they can very easily be reused in many places.</p>
+
+<h3 id='the_init_callback'>&#8220;init&#8221; 回调</h3>
+
+<p class="cn">Knockout在DOM元素使用自定义绑定的时候会调用你的 <code>init</code> 函数。 <code>init</code>有两个重要的用途：</p>
+<p class="en">Knockout will call your <code>init</code> function once for each DOM element that you use the binding on. There are two main uses for <code>init</code>:</p>
+
+<ul class="cn">
+<li>为DOM元素设置初始值</li>
+
+<li>注册事件句柄，例如当用户点击或者编辑DOM元素的时候，你可以改变相关的observable值的状态。注册事件句柄，例如当用户点击或者编辑DOM元素的时候，你可以改变相关的observable值的状态。</li>
+</ul>
+<ul class="en">
+<li>To set any initial state for the DOM element</li>
+
+<li>To register any event handlers so that, for example, when the user clicks on or modifies the DOM element, you can change the state of the associated observable</li>
+</ul>
+
+<p class="cn">KO会传递和 <a href='#the_update_callback'><code>update</code></a>回调函数一样的参数。</p>
+<p class="en">KO will pass exactly the same set of parameters that it passes to <a href='#the_update_callback'>the <code>update</code> callback</a>.</p>
+
+<p class="cn">继续上面的例子，你可以像让 <code>slideVisible</code> 在页面第一次显示的时候设置该元素的状态（但是不使用任何动画效果），而只是让动画在以后改变的时候再执行。你可以这样来做：</p>
+<p class="en">Continuing the previous example, you might want <code>slideVisible</code> to set the element to be instantly visible or invisible when the page first appears (without any animated slide), so that the animation only runs when the user changes the model state. You could do that as follows:</p>
+
+<pre><code>ko.bindingHandlers.slideVisible = {
+    init: function(element, valueAccessor) {
+        var value = ko.utils.unwrapObservable(valueAccessor()); // Get the current value of the current property we&#39;re bound to
+        $(element).toggle(value); // jQuery will hide/show the element depending on whether &quot;value&quot; or true or false
+    },
+    update: function(element, valueAccessor, allBindingsAccessor) {
+        // Leave as before
+    }
+};</code></pre>
+
+<p class="cn">这就是说 <code>giftWrap</code> p的初始值声明的是 <code>false</code> （例如 <code>giftWrap: ko.observable(false)</code>），然后让初始值会让关联的DIV隐藏，之后用户点击checkbox的时候会让元素显示出来。</p>
+<p class="en">This means that if <code>giftWrap</code> was defined with the initial state <code>false</code> (i.e., <code>giftWrap: ko.observable(false)</code>) then the associated DIV would initially be hidden, and then would slide into view when the user later checks the box.</p>
+
+<h3 id='modifying_observables_after_dom_events'>DOM事件之后更新observable值</h3>
+
+<p class="cn">你已经值得了如何使用update回调，当observable值改变的时候，你可以更新相关的DOM元素。但是其它形式的事件怎么做呢？比如当用户对某个DOM元素有某些action操作的时候，你想更新相关的observable值。</p>
+<p class="en">You&#8217;ve already seen how to use <code>update</code> so that, when an observable changes, you can update an associated DOM element. But what about events in the other direction? When the user performs some action on a DOM element, you might want to updated an associated observable.</p>
+
+<p class="cn">你可以使用 <code>init</code> 回调来注册一个事件句柄，这样可以改变相关的observable值，例如，</p>
+<p class="en">You can use the <code>init</code> callback as a place to register an event handler that will cause changes to the associated observable. For example,</p>
+
+<pre><code>ko.bindingHandlers.hasFocus = {
+    init: function(element, valueAccessor) {
+        $(element).focus(function() {
+            var value = valueAccessor();
+            value(true);
+        });
+        $(element).blur(function() {
+            var value = valueAccessor();
+            value(false);
+        });           
+    },
+    update: function(element, valueAccessor) {
+        var value = valueAccessor();
+        if (ko.utils.unwrapObservable(value))
+            element.focus();
+        else
+            element.blur();
+    }
+};</code></pre>
+
+<p class="cn">现在你可以通过hasFocus绑定来读取或者写入这个observable值了：</p>
+<p class="en">Now you can both read and write the &#8220;focusedness&#8221; of an element by binding it to an observable:</p>
+
+<pre><code>&lt;p&gt;Name: &lt;input data-bind=&quot;hasFocus: editingName&quot; /&gt;&lt;/p&gt;
+
+&lt;!-- Showing that we can both read and write the focus state --&gt;
+&lt;div data-bind=&quot;visible: editingName&quot;&gt;You&#39;re editing the name&lt;/div&gt;
+&lt;button data-bind=&quot;enable: !editingName(), click:function() { editingName(true) }&quot;&gt;Edit name&lt;/button&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var viewModel = {
+        editingName: ko.observable()
+    };
+    ko.applyBindings(viewModel);
+&lt;/script&gt;</code></pre>    
+		    </div>
+		    
+		    <div class="clear"></div>
+		</div>
+	</div>	
+</div>
+            <div class="clear"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+        </div>
+        
+    <div id="page-footer">(c) knockoutjs.com</div>
+
+    </body>
+</html>

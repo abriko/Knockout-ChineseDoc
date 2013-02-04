@@ -1,0 +1,510 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Knockout : &quot;foreach&quot; 绑定</title> <link href="../css/tripoli.simple.css" type="text/css" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/smallScreen.css" media="only screen and (max-device-width: 800px)" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="../css/tripoli.simple.ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="../css/ie6ie7.css" /><![endif]-->
+        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../css/ie6.css" /><![endif]-->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/release.js"></script>
+		<!--[if lt IE 7]>
+<script defer type="text/javascript" src="../js/ie6pngfix.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css"/>  
+
+<script type="text/javascript">
+if (!window.jQuery)document.write('<script type="text/javascript" src="../js/jquery-1.7.2.min.js"><' + '/script>');
+    $(function() {
+		$('.cn').hover(function(){
+				var t = $(this);
+				t.next('.en').css('top',t.offset().top + t.height() + 10).css('left',t.offset().left).css('width',t.width()).fadeIn();
+			},function(){
+				$(this).next('.en').fadeOut();
+			});
+        // Fancy fonts
+        Cufon.replace('.titillium');
+        Cufon.replace('.engraved', {
+            textShadow: 'rgba(253, 224, 217, 0.45) 1.2px 1px'	
+        });
+        
+        // Syntax highlighting
+        $("pre > code").each(function() {
+            var codeText = $(this).text();
+            $(this).parent().text(codeText).addClass("brush:js");
+        });
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+        
+        // Highlight current top menu item
+        var desiredMenuItem = '' || 'documentation';
+        $(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+        
+        // Highlight current left-hand-nav menu item
+        var urlFilename = location.href.match(/\/([^\/]+)$/);
+        if (urlFilename) {
+            $(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])").addClass("active");
+        }
+    });
+</script> 
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="vspace"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+            <div class="vspace"></div>
+            <div>	
+	<div class="leftCol">		
+		<div class="leftColBackground">&nbsp;</div>
+		<div class="leftColContents">
+			<h1>入门</h1>
+
+<ol>
+    <li><a href="introduction.html">KO工作原理及带来的好处</a></li>
+    <li><a href="installation.html">下载安装</a></li>
+</ol>
+
+<h1>监控属性</h1>
+
+<ol>
+    <li><a href="observables.html">创建带有监控属性的 <em>view model</em></a></li>
+    <li><a href="computedObservables.html">使用<em>自动计算属性(Computed Observables)</em></a></li>
+    <li><a href="observableArrays.html">使用<em>监控数组(Observable Arrays)</em></a></li>	
+</ol>
+
+<h1>使用内置绑定</h1>
+
+<h2>控制文本和外观</h2>
+<ol>
+<li><a href="visible-binding.html"><code>visible</code> 绑定</a><a class="en" href="visible-binding.html">The <code>visible</code> binding</a></li>
+<li><a href="text-binding.html"><code>text</code> 绑定</a></li>
+<li><a href="html-binding.html"><code>html</code> 绑定</a></li>
+<li><a href="css-binding.html"><code>css</code> 绑定</a></li>
+<li><a href="style-binding.html"><code>style</code> 绑定</a></li>
+<li><a href="attr-binding.html"><code>attr</code> 绑定</a></li>
+</ol>
+
+<h2>绑定逻辑控制</h2>
+<ol>
+<li><a href="foreach-binding.html"><code>foreach</code> 绑定</a></li>
+<li><a href="if-binding.html"><code>if</code> 绑定</a></li>
+<li><a href="ifnot-binding.html"><code>ifnot</code> 绑定</a></li>
+<li><a href="with-binding.html"><code>with</code> 绑定</a></li>
+</ol>
+
+<h2>处理表单属性</h2>
+<ol>
+    <li><a href="click-binding.html"><code>click</code> 绑定</a></li>
+    <li><a href="event-binding.html"><code>event</code> 绑定</a></li>
+    <li><a href="submit-binding.html"><code>submit</code> 绑定</a></li>
+    <li><a href="enable-binding.html"><code>enable</code> 绑定</a></li>
+    <li><a href="disable-binding.html"><code>disable</code> 绑定</a></li>
+    <li><a href="value-binding.html"><code>value</code> 绑定</a></li>
+    <li><a href="hasfocus-binding.html"><code>hasfocus</code> 绑定</a></li>
+    <li><a href="checked-binding.html"><code>checked</code> 绑定</a></li>
+    <li><a href="options-binding.html"><code>options</code> 绑定</a></li>
+    <li><a href="selectedOptions-binding.html"><code>selectedOptions</code> 绑定</a></li>    
+    <li><a href="uniqueName-binding.html"><code>uniqueName</code> 绑定</a></li>		
+</ol>
+
+<h2>解析模板</h2>
+<ol>
+    <li><a href="template-binding.html"><code>template</code> 绑定</a></li>
+</ol>
+
+<h2>高级应用</h2>
+<ol>
+    <li><a href="custom-bindings.html">自定义绑定</a></li>
+    <li><a href="json-data.html">读取和保存JSON数据</a></li>
+    <li><a href="extenders.html">扩展observables监控</a></li>
+    <li><a href="throttle-extender.html">The <code>throttle</code> extender</a></li>
+    <li><a href="unobtrusive-event-handling.html">非显式事件绑定</a></li>
+    <li><a href="fn.html"><code>fn</code> 自定义函数</a></li>
+</ol>
+
+<h2>插件</h2>
+<ol>
+    <li><a href="plugins-mapping.html"><code>mapping</code> 插件</a></li>
+</ol>
+
+<h1>更多信息</h1>
+<ol>
+    <li><a href="browser-support.html">浏览支持</a></li>
+    <li><a href="http://groups.google.com/group/knockoutjs">取得帮助</a></li>
+    <li><a href="links.html">在线例子</a></li>
+</ol>
+		</div>		
+	</div>
+	<div class="rightCol">
+		<div class="documentation sticker">
+		    <div class="content">
+		    	<h1>"foreach" 绑定</h1>	
+		    	<h3 id='purpose'>目的</h3>
+
+<p class="cn"><code>foreach</code> 绑定将array中项目绑定到每个重复的节点中，并且将节点的副本绑定到对应的数组项中。在呈现列表或表格的这尤其有用。</p>
+<p class="en">The <code>foreach</code> binding duplicates a section of markup for each entry in an array, and binds each copy of that markup to the corresponding array item. This is especially useful for rendering lists or tables.</p>
+
+<p class="cn">假设你的数组是一个 <a href='observableArrays.html'>observable array</a>，每当你添加或删除数组条目时，绑定可以自动更新对应的UI元素 - 插入或删除更多的副本，而不会影响到其他的DOM元素。</p>
+<p class="en">Assuming your array is an <a href='observableArrays.html'>observable array</a>, whenever you later add or remove array entries, the binding will efficiently update the UI to match - inserting or removing more copies of the markup, without affecting any other DOM elements.</p>
+
+<p class="cn">当然你也是随意嵌套任何流程控制绑定 <code>foreach</code>， <code>if</code> 和 <code>with</code>。</p>
+<p class="en">Of course, you can arbitrarily nest any number of <code>foreach</code> bindings along with other control-flow bindings such as <code>if</code> and <code>with</code>.</p>
+
+<h3 id='example_1_iterating_over_an_array'>例子1: 遍历数组</h3>
+
+<p>这个例子使用 <code>foreach</code> 遍历绑定一个只读表格。</p>
+
+<pre><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;First name&lt;/th&gt;&lt;th&gt;Last name&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody data-bind=&quot;foreach: people&quot;&gt;
+        &lt;tr&gt;
+            &lt;td data-bind=&quot;text: firstName&quot;&gt;&lt;/td&gt;
+            &lt;td data-bind=&quot;text: lastName&quot;&gt;&lt;/td&gt;            
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    ko.applyBindings({
+        people: [
+            { firstName: &#39;Bert&#39;, lastName: &#39;Bertington&#39; },
+            { firstName: &#39;Charles&#39;, lastName: &#39;Charlesforth&#39; },
+            { firstName: &#39;Denise&#39;, lastName: &#39;Dentiste&#39; }
+        ]
+    });
+&lt;/script&gt;</code></pre>
+
+<h3 id='example_2_live_example_with_addremove'>例子2:添加和删除项目</h3>
+
+<p class="cn">下面的示例显示，如果你使用observableArray，那么用户界面与数组的更改保持同步。</p>
+<p class="en">The following example show that, if your array is observable, then the UI will be kept in sync with changes to that array.</p>
+<div class='liveExample'>
+
+<h4>People</h4>
+<ul data-bind='foreach: people'>
+    <li>
+        Name: <span data-bind='text: name'> </span>
+        <a href='#' data-bind='click: $parent.removePerson'>Remove</a>
+    </li>
+</ul>
+<button data-bind='click: addPerson'>Add</button>
+
+<script type='text/javascript'>
+
+/*<![CDATA[*/
+function AppViewModel() {
+    var self = this;
+    
+    self.people = ko.observableArray([
+        { name: 'Bert' },
+        { name: 'Charles' },
+        { name: 'Denise' }
+    ]);
+    
+    self.addPerson = function() {
+        self.people.push({ name: "New at " + new Date() });
+    };
+    
+    self.removePerson = function() {
+        self.people.remove(this);
+    }
+}
+
+ko.applyBindings(new AppViewModel());
+/*]]>*/
+
+</script>
+</div><h4>源码: View</h4><pre class='brush:html'>
+&lt;h4&gt;People&lt;/h4&gt;
+&lt;ul data-bind=&quot;foreach: people&quot;&gt;
+    &lt;li&gt;
+        Name: &lt;span data-bind=&quot;text: name&quot;&gt; &lt;/span&gt;
+        &lt;a href=&quot;#&quot; data-bind=&quot;click: $parent.removePerson&quot;&gt;Remove&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;button data-bind=&quot;click: addPerson&quot;&gt;Add&lt;/button&gt;
+</pre><h4>源码: View model</h4><pre class='brush:js'>
+function AppViewModel() {
+    var self = this;
+    
+    self.people = ko.observableArray([
+        { name: 'Bert' },
+        { name: 'Charles' },
+        { name: 'Denise' }
+    ]);
+    
+    self.addPerson = function() {
+        self.people.push({ name: &quot;New at &quot; + new Date() });
+    };
+    
+    self.removePerson = function() {
+        self.people.remove(this);
+    }
+}
+
+ko.applyBindings(new AppViewModel());
+</pre>
+<h3 id='parameters'>参数</h3>
+
+<ul>
+<li>
+<p>主参数</p>
+
+<p class="cn">传入你要遍历的数组。的结合将输出一个标记为每个条目。</p>
+<p class="en">Pass the array that you wish to iterate over. The binding will output a section of markup for each entry.</p>
+
+<p class="cn">或者，传入 JavaScript 文本对象和你想遍历的数组属性名。对象文本也可能有其他属性,例如 <code>afterAdd</code> 和 <code>includeDestroyed</code> &#8212; 这些额外的选项的详细信息和示例，请参阅以下使用。</p>
+<p class="en">Alternatively, pass a JavaScript object literal with a property called <code>data</code> which is the array you wish to iterate over. The object literal may also have other properties, such as <code>afterAdd</code> or <code>includeDestroyed</code> &#8212; see below for details of these extra options and examples of their use.</p>
+
+<p class="cn">如果您提供的是 observable， <code>foreach</code> 绑定会将数组的变化更新到DOM中响应部分。</p>
+<p class="en">If the array you supply is observable, the <code>foreach</code> binding will respond to any future changes in the array&#8217;s contents by adding or removing corresponding sections of markup in the DOM.</p>
+</li>
+
+<li>
+<p>附加参数</p>
+
+<ul>
+<li>无</li>
+</ul>
+</li>
+</ul>
+
+<h3 id='note_1_referring_to_each_array_entry_using_data'>注1: 在遍历项中使用$data</h3>
+
+<p class="cn">如上述例子所示，<code>foreach</code>块的绑定可以参考数组项的属性。例如， <a href='#example_1_iterating_over_an_array'>例1</a>参考 <code>firstName</code> 和 <code>lastName</code> 每个数组中项目。</p>
+<p class="en">As shown in the above examples, bindings within the <code>foreach</code> block can refer to properties on the array entries. For example, <a href='#example_1_iterating_over_an_array'>Example 1</a> referenced the <code>firstName</code> and <code>lastName</code> properties on each array entry.</p>
+
+<p class="cn">但是，如果你要引用数组项本身（它不只是一个属性）？这种情况下，你可以使用伪变量 <code>$data</code>。在 <code>foreach</code> 块中,它相当于当前遍历到的项目。例如，</p>
+<p class="en">But what if you want to refer to the array entry itself (not just one of its properties)? In that case, you can use the pseudovariable <code>$data</code>. Within a <code>foreach</code> block, it means &#8220;the current item&#8221;. For example,</p>
+
+<pre><code>&lt;ul data-bind=&quot;foreach: months&quot;&gt;
+    &lt;li&gt;
+        The current item is: &lt;b data-bind=&quot;text: $data&quot;&gt;&lt;/b&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    ko.applyBindings({
+        months: [ &#39;Jan&#39;, &#39;Feb&#39;, &#39;Mar&#39;, &#39;etc&#39; ]
+    });
+&lt;/script&gt;</code></pre>
+
+<p class="cn">如果你愿意，你可以使用 <code>$data</code> 作为每个遍历项目的前缀。例如， 你可以将 <a href='#example_1_iterating_over_an_array'>例1</a> 改写成如下:</p>
+<p class="en">If you wanted, you could use <code>$data</code> as a prefix when referencing properties on each entry. For example, you could rewrite part of <a href='#example_1_iterating_over_an_array'>Example 1</a> as follows:</p>
+
+<pre><code>&lt;td data-bind=&quot;text: $data.firstName&quot;&gt;&lt;/td&gt;</code></pre>
+
+<p class="cn">&#8230; 但是你没必要这么做， 因为默认情况下 <code>firstName</code> 包含在 <code>$data</code> 内。</p>
+<p class="en">&#8230; but you don&#8217;t have to, because <code>firstName</code> will be evaluated within the context of <code>$data</code> by default anyway.</p>
+
+
+<h3 id='note_2_referring_to_parent_binding_contexts_using_parent_parents_and_root'>注2: 结合绑定上下文使用 $parent， $parents， 和 $root</h3>
+
+<p class="cn">当你嵌套流程控制绑定时， 通常需要访问当前项的父级。你可以使用下面的伪变量:</p>
+<p class="en">When you&#8217;re nesting control-flow bindings, it&#8217;s often desirable to reach back up the hierarchy and access data or functions from parent contexts. You can use the following pseudovariables:</p>
+
+<ul>
+<li>
+<p class="cn"><code>$parent</code> &#8212; 是当前 <code>foreach</code> 块项以外</p>
+<p class="en"><code>$parent</code> &#8212; is the data item outside the current <code>foreach</code> block</p>
+</li>
+
+<li>
+<p class="cn"><code>$parents</code> &#8212; 是一个数组，它表示数据的所有外部流控制范围中的项目。</p>
+<p class="en"><code>$parents</code> &#8212; is an array representing data items from all outer control-flow scopes.</p>
+
+<ul>
+<li class="cn"><code>$parents[0]</code> 是父控制流范围项目 (它等价于 <code>$parent</code>)</li>
+<li class="en"><code>$parents[0]</code> is the item from the parent control-flow scope (i.e., it&#8217;s the same as <code>$parent</code>)</li>
+
+<li class="cn"><code>$parents[1]</code> 是祖父控制流范围的项目</li>
+<li class="en"><code>$parents[1]</code> is the item from the grandparent control-flow scope</li>
+
+<li class="cn"><code>$parents[2]</code> 是曾祖父控制流项范围</li>
+<li class="en"><code>$parents[2]</code> is the item from the great-grandparent control-flow scope</li>
+
+<li>&#8230; 等等</li>
+</ul>
+</li>
+
+<li>
+<p class="cn">在流程中 <code>$root</code> 是外层的项目。通常这是你viewmodel中追顶端对象。等同于 <code>$parents[$parents.length-1]</code>。</p>
+<p class="en"><code>$root</code> is the item from the outer-most control-flow scope. Typically this is your top-level viewmodel object. This is the same as <code>$parents[$parents.length-1]</code>.</p>
+</li>
+</ul>
+
+<p class="cn">例如，请查看带有 <code>$parent</code> 的<a href='#example_2_live_example_with_addremove'>例2</a>。</p>
+<p class="en">For example, see the use of <code>$parent</code> in <a href='#example_2_live_example_with_addremove'>Example 2</a>.</p>
+
+<h3 id='note_3_using_foreach_without_a_container_element'>注3: 在容器元素上使用foreach</h3>
+
+<p class="cn">在某些情况下，你可能需要遍历复制某些元素标签,但是你没有可用于 <code>foreach</code> 绑定的容器元素。请查看下面例子:</p>
+<p class="en">In some cases, you might want to duplicate a section of markup, but you don&#8217;t have any container element on which to put a <code>foreach</code> binding. For example, you might want to generate the following:</p>
+
+<pre><code>&lt;ul&gt;
+    &lt;li class=&quot;header&quot;&gt;Header item&lt;/li&gt;
+    &lt;!-- The following are generated dynamically from an array --&gt;
+    &lt;li&gt;Item A&lt;/li&gt;
+    &lt;li&gt;Item B&lt;/li&gt;
+    &lt;li&gt;Item C&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<p class="cn">在这个例子中， 你不能将 <code>foreach</code> 绑定放置在 <code>&lt;ul&gt;</code> 标签上 (因为你会的到重复的 <code>&lt;ul&gt;</code> 标签)，也可以把容器设置在 <code>&lt;ul&gt;</code> 内部(因为只允许 <code>&lt;li&gt;</code>元素出现在 <code>&lt;ul&gt;</code>内部)。</p>
+<p class="en">In this example, there isn&#8217;t anywhere to put a normal <code>foreach</code> binding. You can&#8217;t put it on the <code>&lt;ul&gt;</code> (because the you&#8217;d be duplicating the header item), nor can you put a further container inside the <code>&lt;ul&gt;</code> (because only <code>&lt;li&gt;</code> elements are allowed inside <code>&lt;ul&gt;</code>s).</p>
+
+<p class="cn">为了解决这个问题,你可以使用<em>无容器的控制流的语法</em>，它是基于注释标签。例如,</p>
+<p class="en">To handle this, you can use the <em>containerless control flow syntax</em>, which is based on comment tags. For example,</p>
+
+<pre><code>&lt;ul&gt;
+    &lt;li class=&quot;header&quot;&gt;Header item&lt;/li&gt;
+    &lt;!-- ko foreach: myItems --&gt;
+        &lt;li&gt;Item &lt;span data-bind=&quot;text: $data&quot;&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;!-- /ko --&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    ko.applyBindings({
+        myItems: [ &#39;A&#39;, &#39;B&#39;, &#39;C&#39; ]
+    });
+&lt;/script&gt;</code></pre>
+
+<p class="cn"><code>&lt;!-- ko --&gt;</code> 和 <code>&lt;!-- /ko --&gt;</code> 注释标签作为开始/结束的标记，定义一个&#8220;虚拟元素&#8221;将要遍历的项包含在里面。Knockout能够认识这个虚拟元素的语法和绑定。</p>
+<p class="en">The <code>&lt;!-- ko --&gt;</code> and <code>&lt;!-- /ko --&gt;</code> comments act as start/end markers, defining a &#8220;virtual element&#8221; that contains the markup inside. Knockout understands this virtual element syntax and binds as if you had a real container element.</p>
+
+<h3 id='note_4_destroyed_entries_are_hidden_by_default'>注4: 带有Destroyed标识的项目默认是隐藏的</h3>
+
+<p class="cn">有的时候您用Destroyed标记了数组中将要删除条目，但是实际上还没有真正的移除那个条目。<em>无损删除</em>。更多使用详情，请查看 <a href='observableArrays.html#destroy_and_destroyall_note_usually_relevant_to_ruby_on_rails_developers_only'>在<code>observableArray</code>中使用destroy方法</a>.</p>
+<p class="en">Sometimes you may want to mark an array entry as deleted, but without actually losing record of its existence. This is known as a <em>non-destructive delete</em>. For details of how to do this, see <a href='observableArrays.html#destroy_and_destroyall_note_usually_relevant_to_ruby_on_rails_developers_only'>the destroy function on <code>observableArray</code></a>.</p>
+
+<p class="cn">默认情况下，<code>foreach</code> 绑定会跳过(就是., 隐藏) 数组中重带有destroyed标记的元素。如果你想要显示destroyed的元素，请设置 <code>includeDestroyed</code> 选项为 <code>true</code>。例如，</p>
+<p class="en">By default, the <code>foreach</code> binding will skip over (i.e., hide) any array entries that are marked as destroyed. If you want to show destroyed entries, use the <code>includeDestroyed</code> option. For example,</p>
+
+<pre><code>&lt;div data-bind=&#39;foreach: { data: myArray, includeDestroyed: true }&#39;&gt;
+    ...
+&lt;/div&gt;</code></pre>
+
+<h3 id='note_5_postprocessing_or_animating_the_generated_dom_elements'>Note 5: Post-processing or animating the generated DOM elements</h3>
+
+<p class="cn">如果您需要运行进一步的自定义逻辑生成DOM元素，你可以使用以下任何方法回调:</p>
+<p class="en">If you need to run some further custom logic on the generated DOM elements, you can use any of the following callbacks:</p>
+
+<ul>
+<li>
+<p class="cn"><code>afterRender</code> &#8212; 在每次调用 <code>foreach</code> 将被插入到文档中，当 <code>foreach</code> 首次初始化时和新的元素被添加到关联数组中的时候。 Knockout 将提供下列回调参数:</p>
+<p class="en"><code>afterRender</code> &#8212; is invoked each time the <code>foreach</code> block is duplicated and inserted into the document, both when <code>foreach</code> first initializes, and when new entries are added to the associated array later. Knockout will supply the following parameters to your callback:</p>
+
+<ol class="cn">
+<li>把数组插入到DOM中</li>
+
+<li>正在绑定的数据项</li>
+</ol>
+<ol class="en">
+<li>An array of the inserted DOM elements</li>
+
+<li>The data item against which they are being bound</li>
+</ol>
+</li>
+
+<li>
+<p class="cn"><code>afterAdd</code> &#8212; 和<code>afterRender</code>很像，除非方法被直接调用，否则只有当新的项目被添加到您的数组中时调用此方法 (而<em>不是</em> 当 <code>foreach</code> 初始化遍历项目时)。<code>afterAdd</code> 常见的用途是调用其他方法,如JQuery中 <code>$(domNode).fadeIn()</code> 在添加项目时启用动画效果。 Knockout 将提供下列回调参数:</p>
+<p class="en"><code>afterAdd</code> &#8212; is like <code>afterRender</code>, except it is invoked only when new entries are added to your array (and <em>not</em> when <code>foreach</code> first iterates over your array&#8217;s initial contents). A common use for <code>afterAdd</code> is to call a method such as jQuery&#8217;s <code>$(domNode).fadeIn()</code> so that you get animated transitions whenever items are added。 Knockout will supply the following parameters to your callback:</p>
+
+<ol class="cn">
+<li>DOM节点将被添加到文档</li>
+
+<li>被添加数组元素的引索</li>
+
+<li>被添加数组的元素</li>
+</ol>
+<ol class="en">
+<li>A DOM node being added to the document</li>
+
+<li>The index of the added array element</li>
+
+<li>The added array element</li>
+</ol>
+</li>
+
+<li>
+<p class="cn"><code>beforeRemove</code> &#8212; 此方法当数组项被删除时调用，但相应的DOM节点一辈删除。如果指定了 <code>beforeRemove</code> 回调,它<em>将帮你自动移除相应的DOM节点</em>。例如 jQuery&#8217;s方法 <code>$(domNode).fadeOut()</code> 删除DOM节点的同时添加动画效果 &#8212; 在这个例子中， Knockout 不知道DOM节点什么时候被删除 (谁知道你的动画要多久?),所以你是这样删除的。Knockout将提供下列回调参数:</p>
+<p class="en"><code>beforeRemove</code> &#8212; is invoked when an array item has been removed, but before the corresponding DOM nodes have been removed. If you specify a <code>beforeRemove</code> callback, then <em>it becomes your responsibility to remove the DOM nodes</em>. The obvious use case here is calling something like jQuery&#8217;s <code>$(domNode).fadeOut()</code> to animate the removal of the corresponding DOM nodes &#8212; in this case, Knockout cannot know how soon it is allowed to physically remove the DOM nodes (who knows how long your animation will take?), so it is up to you to remove them. Knockout will supply the following parameters to your callback:</p>
+
+
+<ol class="cn">
+<li>被删除的DOM节点</li>
+
+<li>被删除的数组元素引索</li>
+
+<li>被删除的数组元素项</li>
+</ol>
+<ol class="en">
+<li>A DOM node that you should remove</li>
+
+<li>The index of the removed array element</li>
+
+<li>The removed array element</li>
+</ol>
+</li>
+</ul>
+
+<p class="cn">这里有个简单的例子，使用 <code>afterRender</code>。试用JQuery <code>$.css</code> 使呈现的元素变为红色:</p>
+<p class="en">Here&#8217;s a trivial example that uses <code>afterRender</code>. It simply uses jQuery&#8217;s <code>$.css</code> to make the rendered element turn red:</p>
+
+<pre><code>&lt;ul data-bind=&quot;foreach: { data: myItems, afterRender: handleAfterRender }&quot;&gt;
+    &lt;li data-bind=&quot;text: $data&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    ko.applyBindings({
+        myItems: ko.observableArray([ &#39;A&#39;, &#39;B&#39;, &#39;C&#39; ]),
+        handleAfterRender: function(elements, data) {
+            $(elements).css({ color: &#39;red&#39; });
+        }
+    });
+&lt;/script&gt;</code></pre>
+
+<p class="cn">请查看 <code>afterAdd</code> 和 <code>beforeRemove</code> 的例子 <a href='/examples/animatedTransitions.html'>animated transitions</a>.</p>
+<p class="en">For examples of <code>afterAdd</code> and <code>beforeRemove</code> see <a href='/examples/animatedTransitions.html'>animated transitions</a>.</p>
+
+<h3 id='dependencies'>依赖性</h3>
+
+<p>除KO核心类库外，无依赖。</p>    
+		    </div>
+		    
+		    <div class="clear"></div>
+		</div>
+	</div>	
+</div>
+            <div class="clear"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+        </div>
+        
+    <div id="page-footer">(c) knockoutjs.com</div>
+
+    </body>
+</html>

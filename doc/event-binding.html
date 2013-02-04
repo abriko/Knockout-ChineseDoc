@@ -1,0 +1,334 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Knockout : &quot;event&quot; 绑定</title> <link href="../css/tripoli.simple.css" type="text/css" rel="stylesheet" /> 
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/smallScreen.css" media="only screen and (max-device-width: 800px)" />
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="../css/tripoli.simple.ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="../css/ie6ie7.css" /><![endif]-->
+        <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../css/ie6.css" /><![endif]-->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/release.js"></script>
+		<!--[if lt IE 7]>
+<script defer type="text/javascript" src="../js/ie6pngfix.js"></script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="../js/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css"/>  
+
+<script type="text/javascript">
+if (!window.jQuery)document.write('<script type="text/javascript" src="../js/jquery-1.7.2.min.js"><' + '/script>');
+    $(function() {
+		$('.cn').hover(function(){
+				var t = $(this);
+				t.next('.en').css('top',t.offset().top + t.height() + 10).css('left',t.offset().left).css('width',t.width()).fadeIn();
+			},function(){
+				$(this).next('.en').fadeOut();
+			});
+        // Fancy fonts
+        Cufon.replace('.titillium');
+        Cufon.replace('.engraved', {
+            textShadow: 'rgba(253, 224, 217, 0.45) 1.2px 1px'	
+        });
+        
+        // Syntax highlighting
+        $("pre > code").each(function() {
+            var codeText = $(this).text();
+            $(this).parent().text(codeText).addClass("brush:js");
+        });
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+        
+        // Highlight current top menu item
+        var desiredMenuItem = '' || 'documentation';
+        $(".main-menu a[rel=" + desiredMenuItem + "]").addClass("active");
+        
+        // Highlight current left-hand-nav menu item
+        var urlFilename = location.href.match(/\/([^\/]+)$/);
+        if (urlFilename) {
+            $(".leftColContents li:has(a[href$='" + urlFilename[1] + "'])").addClass("active");
+        }
+    });
+</script> 
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="vspace"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+            <div class="vspace"></div>
+            <div>	
+	<div class="leftCol">		
+		<div class="leftColBackground">&nbsp;</div>
+		<div class="leftColContents">
+			<h1>入门</h1>
+
+<ol>
+    <li><a href="introduction.html">KO工作原理及带来的好处</a></li>
+    <li><a href="installation.html">下载安装</a></li>
+</ol>
+
+<h1>监控属性</h1>
+
+<ol>
+    <li><a href="observables.html">创建带有监控属性的 <em>view model</em></a></li>
+    <li><a href="computedObservables.html">使用<em>自动计算属性(Computed Observables)</em></a></li>
+    <li><a href="observableArrays.html">使用<em>监控数组(Observable Arrays)</em></a></li>	
+</ol>
+
+<h1>使用内置绑定</h1>
+
+<h2>控制文本和外观</h2>
+<ol>
+<li><a href="visible-binding.html"><code>visible</code> 绑定</a><a class="en" href="visible-binding.html">The <code>visible</code> binding</a></li>
+<li><a href="text-binding.html"><code>text</code> 绑定</a></li>
+<li><a href="html-binding.html"><code>html</code> 绑定</a></li>
+<li><a href="css-binding.html"><code>css</code> 绑定</a></li>
+<li><a href="style-binding.html"><code>style</code> 绑定</a></li>
+<li><a href="attr-binding.html"><code>attr</code> 绑定</a></li>
+</ol>
+
+<h2>绑定逻辑控制</h2>
+<ol>
+<li><a href="foreach-binding.html"><code>foreach</code> 绑定</a></li>
+<li><a href="if-binding.html"><code>if</code> 绑定</a></li>
+<li><a href="ifnot-binding.html"><code>ifnot</code> 绑定</a></li>
+<li><a href="with-binding.html"><code>with</code> 绑定</a></li>
+</ol>
+
+<h2>处理表单属性</h2>
+<ol>
+    <li><a href="click-binding.html"><code>click</code> 绑定</a></li>
+    <li><a href="event-binding.html"><code>event</code> 绑定</a></li>
+    <li><a href="submit-binding.html"><code>submit</code> 绑定</a></li>
+    <li><a href="enable-binding.html"><code>enable</code> 绑定</a></li>
+    <li><a href="disable-binding.html"><code>disable</code> 绑定</a></li>
+    <li><a href="value-binding.html"><code>value</code> 绑定</a></li>
+    <li><a href="hasfocus-binding.html"><code>hasfocus</code> 绑定</a></li>
+    <li><a href="checked-binding.html"><code>checked</code> 绑定</a></li>
+    <li><a href="options-binding.html"><code>options</code> 绑定</a></li>
+    <li><a href="selectedOptions-binding.html"><code>selectedOptions</code> 绑定</a></li>    
+    <li><a href="uniqueName-binding.html"><code>uniqueName</code> 绑定</a></li>		
+</ol>
+
+<h2>解析模板</h2>
+<ol>
+    <li><a href="template-binding.html"><code>template</code> 绑定</a></li>
+</ol>
+
+<h2>高级应用</h2>
+<ol>
+    <li><a href="custom-bindings.html">自定义绑定</a></li>
+    <li><a href="json-data.html">读取和保存JSON数据</a></li>
+    <li><a href="extenders.html">扩展observables监控</a></li>
+    <li><a href="throttle-extender.html">The <code>throttle</code> extender</a></li>
+    <li><a href="unobtrusive-event-handling.html">非显式事件绑定</a></li>
+    <li><a href="fn.html"><code>fn</code> 自定义函数</a></li>
+</ol>
+
+<h2>插件</h2>
+<ol>
+    <li><a href="plugins-mapping.html"><code>mapping</code> 插件</a></li>
+</ol>
+
+<h1>更多信息</h1>
+<ol>
+    <li><a href="browser-support.html">浏览支持</a></li>
+    <li><a href="http://groups.google.com/group/knockoutjs">取得帮助</a></li>
+    <li><a href="links.html">在线例子</a></li>
+</ol>
+		</div>		
+	</div>
+	<div class="rightCol">
+		<div class="documentation sticker">
+		    <div class="content">
+		    	<h1>"event" 绑定</h1>	
+		    	<h3 id='purpose'>目的</h3>
+
+<p class="cn"><code>event</code> 绑定在DOM元素上添加指定的事件句柄以便元素被触发的时候执行定义的JavaScript 函数。大部分情况下是用在 <code>keypress</code>, <code>mouseover</code> 和 <code>mouseout</code>上。</p>
+<p class="en">The <code>event</code> binding allows you to add an event handler for a specified event so that your chosen JavaScript function will be invoked when that event is triggered for the associated DOM element. This can be used to bind to any event, such as <code>keypress</code>, <code>mouseover</code> or <code>mouseout</code>.</p>
+
+<h3 id='example'>例子</h3>
+
+<pre><code>&lt;div&gt;
+    &lt;div data-bind=&quot;event: { mouseover: enableDetails, mouseout: disableDetails }&quot;&gt;
+        Mouse over me
+    &lt;/div&gt;
+    &lt;div data-bind=&quot;visible: detailsEnabled&quot;&gt;
+        Details
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var viewModel = {
+        detailsEnabled: ko.observable(false),
+        enableDetails: function() {
+            this.detailsEnabled(true);
+        },
+        disableDetails: function() {
+            this.detailsEnabled(false);
+        }
+    };
+    ko.applyBindings(viewModel);
+&lt;/script&gt;</code></pre>
+
+<p class="cn">每次鼠标在第一个元素上移入移出的时候都会调用view model上的方法来toggle <code>detailsEnabled</code> 的值，而第二个元素会根据 <code>detailsEnabled</code> 的值自动显示或者隐藏。</p>
+<p class="en">Now, moving your mouse pointer on or off of the first element will invoke methods on the view model to toggle the <code>detailsEnabled</code> observable. The second element reacts to changes to the value of <code>detailsEnabled</code> by either showing or hiding itself.</p>
+
+<h3 id='parameters'>参数</h3>
+
+<ul>
+<li>
+<p>主参数</p>
+
+<p class="cn">你需要传入的是一个JavaScript对象，他的属性名是事件名称，值是你所需要执行的函数。</p>
+<p class="en">You should pass a JavaScript object in which the property names correspond to event names, and the values correspond to the function that you want to bind to the event.</p>
+
+<p class="cn">你可以声明任何JavaScript函数 – 不一定非要是view model里的函数。你可以声明任意对象上的任何函数，例如： <code>event { mouseover: someObject.someFunction }</code>。</p>
+<p class="en">You can reference any JavaScript function - it doesn&#8217;t have to be a function on your view model. You can reference a function on any object by writing <code>event { mouseover: someObject.someFunction }</code>.</p>
+<!-- <p class="cn">View model上的函数在用的时候有一点点特殊，就是不需要引用对象的，直接引用函数本身就行了，比如直接写 <code>event: { mouseover: enableDetails }</code> 就可以了，而无需写成： <code>event: { mouseover: viewModel.enableDetails }</code>（尽管是合法的）。</p> -->
+</li>
+
+<li>
+<p>其它参数</p>
+
+<ul>
+<li>无</li>
+</ul>
+</li>
+</ul>
+
+<h3 id='note_1_passing_a_current_item_as_a_parameter_to_your_handler_function'>注1: 传递 “当前项目” 作为处理函数的一个参数</h3>
+
+<p class="cn">当调用处理程序时， Knockout 将提供当前模型作为第一个参数的值。如果你是用集合中的每个项的呈现UI，当你需要知道事件是指向一个项目。这一点尤为有用。 例如，</p>
+<p class="en">When calling your handler, Knockout will supply the current model value as the first parameter. This is particularly useful if you&#8217;re rendering some UI for each item in a collection, and you need to know which item the event refers to. For example,</p>
+
+<pre><code>&lt;ul data-bind=&quot;foreach: places&quot;&gt;
+    &lt;li data-bind=&quot;text: $data, event: { mouseover: $parent.logMouseOver }&quot;&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You seem to be interested in: &lt;span data-bind=&quot;text: lastInterest&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+
+ &lt;script type=&quot;text/javascript&quot;&gt;
+     function MyViewModel() {
+         var self = this;
+         self.lastInterest = ko.observable();
+         self.places = ko.observableArray([&#39;London&#39;, &#39;Paris&#39;, &#39;Tokyo&#39;]);
+
+         // The current item will be passed as the first parameter, so we know which place was hovered over
+         self.logMouseOver = function(place) {
+             self.lastInterest(place);
+         }
+     }
+     ko.applyBindings(new MyViewModel());
+&lt;/script&gt; </code></pre>
+
+<p class="cn">这个例子有两点需要注意:</p>
+
+<ul class="cn">
+<li>如果你在一个嵌套的绑定上下文。例如，如果你在 <code>foreach</code> 或 <code>with</code> 中, 但你处理函数在根 viewmodel 或其他父上下文， 您需要使用前缀，例如 <code>$parent</code> 或 <code>$root</code> 来查找处理函数。 关于 <code>$parent</code> 和 <code>$root</code>绑定上下文的信息，请参见文档<a href='foreach-binding.html'><code>foreach</code></a>。</li>
+
+<li>viewmodel中，通常很有用，宣布自或其他变量作为别名，则此。 这样做可以避免重新定义任何问题，这是第二个事件处理程序或Ajax请求回调。</li>
+</ul>
+<ul class="en">
+<li>If you&#8217;re inside a nested binding context, for example if you&#8217;re inside a <code>foreach</code> or a <code>with</code> block, but your handler function is on the root viewmodel or some other parent context, you&#8217;ll need to use a prefix such as <code>$parent</code> or <code>$root</code> to locate the handler function. For more information about <code>$parent</code>, <code>$root</code>, and binding contexts, see the documentation about <a href='foreach-binding.html'><code>foreach</code></a>.</li>
+
+<li>In your viewmodel, it&#8217;s often useful to declare <code>self</code> (or some other variable) as an alias for <code>this</code>. Doing so avoids any problems with <code>this</code> being redefined to mean something else in event handlers or Ajax request callbacks.</li>
+</ul>
+
+<h3 id='note_2_accessing_the_event_object_or_passing_more_parameters'>注2：访问事件源对象</h3>
+
+<p class="cn">有些情况，你可能需要使用事件源对象，Knockout会将这个对象传递到你函数的第一个参数：</p>
+<p class="en">In some scenarios, you may need to access the DOM event object associated with your event. Knockout will pass the event as the second parameter to your function, as in this example:</p>
+
+<pre><code>&lt;div data-bind=&quot;event: { mouseover: myFunction }&quot;&gt;
+    Mouse over me
+&lt;/div&gt;
+
+ &lt;script type=&quot;text/javascript&quot;&gt;
+    var viewModel = {
+        myFunction: function(data, event) {
+            if (event.shiftKey) {
+                //do something different when user has shift key down
+            } else {
+                //do normal action
+            }
+        }
+    };
+    ko.applyBindings(viewModel);
+&lt;/script&gt;   </code></pre>
+
+<p class="cn">如果你需要的话，可以使用匿名函数的第一个参数传进去，然后在里面调用：</p>
+<p class="en">If you need to pass more parameters, one way to do it is by wrapping your handler in a function literal that takes in a parameter, as in this example:</p>
+
+<pre><code>&lt;div data-bind=&quot;event: { mouseover: function(data, event) { myFunction(data, event, &#39;param1&#39;, &#39;param2&#39;) } }&quot;&gt;
+    Mouse over me
+&lt;/div&gt;</code></pre>
+
+<p class="cn">这样，KO就会将事件源对象传递给你的函数并且使用了。</p>
+<p class="en">Now, KO will pass the event to your function literal, which is then available to be passed to your handler.</p>
+
+<p class="cn">另外，您更喜欢在视图中避免功能的文本，你可以使用 <code>bind</code> 函数， 具体的参数值函数参考：</p>
+<p class="en">Alternatively, if you prefer to avoid the function literal in your view, you can use the <code>bind</code> function, which attaches specific parameter values to a function reference:</p>
+
+<pre><code>&lt;button data-bind=&quot;event: { mouseover: myFunction.bind($data, &#39;param1&#39;, &#39;param2&#39;) }&quot;&gt;
+    Click me
+&lt;/button&gt;</code></pre>
+
+<h3 id='note_3_allowing_the_default_action'>注3: 允许执行默认事件</h3>
+
+<p class="cn">默认情况下，Knockout会阻止冒泡，防止默认的事件继续执行。例如，使用 <code>event</code> 语法在 <code>input</code> 标签标签上绑定一个 <code>keypress</code> 事件，当你输入内容的时候，浏览器只会调用你的函数而<em>不是</em> 添加 <code>input</code> 的值。 另外一个例子 <a href='click-binding.html'>"click" 绑定</a>，在执行完自定义事件时它<em>不会</em>不会连接到 <code>href</code>地址。因为你的< code>click</code> 绑定主要就是操作你的view model，而不是连接到另外一个页面。</p>
+<p class="en">By default, Knockout will prevent the event from taking any default action. For example if you use the <code>event</code> binding to capture the <code>keypress</code> event of an <code>input</code> tag, the browser will only call your handler function and will <em>not</em> add the value of the key to the <code>input</code> element&#8217;s value. A more common example is using <a href='click-binding.html'>the click binding</a>, which internally uses this binding, where your handler function will be called, but the browser will <em>not</em> navigate to the link&#8217;s <code>href</code>. This is a useful default because when you use the <code>click</code> binding, it&#8217;s normally because you&#8217;re using the link as part of a UI that manipulates your view model, not as a regular hyperlink to another web page.</p>
+
+<p class="cn">当然，如果你想让默认的事件继续<em>执行</em>，你可以在你 <code>event</code> 的自定义函数里返回 <code>true</code> 。</p>
+<p class="en">However, if you <em>do</em> want to let the default action proceed, just return <code>true</code> from your <code>event</code> handler function.</p>
+
+<h3 id='note_4_preventing_the_event_from_bubbling'>注4：防止事件冒泡</h3>
+
+<p class="cn">默认情况下，Knockout允许event事件继续在更高一层的事件句柄上冒泡执行。例如，如果你的元素和父元素都绑定了 <code>mouseover</code> 事件，那么如果你的鼠标在该元素移动的时候两个事件都会触发的。如果需要，你可以通过额外的绑定 <code>youreventBubble</code> 来禁止冒泡。例如：</p>
+<p class="en">By default, Knockout will allow the event to continue to bubble up to any higher level event handlers. For example, if your element is handling a <code>mouseover</code> event and a parent of the element also handles that same event, then the event handler for both elements will be triggered. If necessary, you can prevent the event from bubbling by including an additional binding that is named <code>youreventBubble</code> and passing false to it, as in this example:</p>
+
+<pre><code>    &lt;div data-bind=&quot;event: { mouseover: myDivHandler }&quot;&gt;
+        &lt;button data-bind=&quot;event: { mouseover: myButtonHandler }, mouseoverBubble: false&quot;&gt;
+            Click me
+        &lt;/button&gt;
+    &lt;/div&gt;</code></pre>
+
+<p class="cn">通常， <code>myButtonHandler</code> 会先执行，然后会冒泡执行 <code>myDivHandler</code> 。但一旦你设置了 <code>mouseoverBubble</code> 为 <code>false</code> 的时候，冒泡事件会被禁止。</p>
+<p class="en">Normally, in this case <code>myButtonHandler</code> would be called first, then the event would bubble up to <code>myDivHandler</code>. However, the <code>mouseoverBubble</code> binding that we added with a value of <code>false</code> prevents the event from making it past <code>myButtonHandler</code>.</p>
+
+<h3 id='dependencies'>依赖性</h3>
+
+<p>除KO核心类库外，无依赖。</p>    
+		    </div>
+		    
+		    <div class="clear"></div>
+		</div>
+	</div>	
+</div>
+            <div class="clear"></div>
+            <div class="main-menu">
+    <ul>
+        <li><a rel="home" href="../index.html">主页</a></li>
+        <li><a rel="installation" href="./installation.html">下载 / 安装</a></li>
+        <li><a rel="examples" href="../examples/">在线例子</a></li>
+        <li><a rel="documentation" href="./introduction.html">文档</a></li>
+        <li><a href="http://groups.google.com/group/knockoutjs">论坛</a></li>
+        <li><a href="http://github.com/SteveSanderson/knockout">源码</a></li>
+    </ul>
+</div>        	
+<div class="clear"></div>
+        </div>
+        
+    <div id="page-footer">(c) knockoutjs.com</div>
+
+    </body>
+</html>
